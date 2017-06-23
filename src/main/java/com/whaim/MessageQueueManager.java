@@ -9,5 +9,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class MessageQueueManager {
-
+    private String hostname;
+    private int port;
 }
