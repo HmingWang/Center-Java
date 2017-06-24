@@ -1,8 +1,11 @@
 package com.whaim;
 
 import com.ibm.mq.jms.MQConnectionFactory;
-import org.springframework.stereotype.Component;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import com.ibm.mq.jms.JMSC;
+import org.springframework.stereotype.Component;
 import javax.jms.*;
 
 
@@ -11,48 +14,176 @@ import javax.jms.*;
  */
 
 @Component
+@ConfigurationProperties(prefix = "mq")
 public class MessageQueueManager {
 
+    public void setPort(int port) {
+        this.port = port;
+    }
+
+    public void setHost(String host) {
+        this.host = host;
+    }
+
+    public void setQmgr(String qmgr) {
+        this.qmgr = qmgr;
+    }
+
+    public void setChannel(String channel) {
+        this.channel = channel;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setSendq(String sendq) {
+        this.sendq = sendq;
+    }
+
+    public void setRecvq(String recvq) {
+        this.recvq = recvq;
+    }
+
+    public void setCcsid(int ccsid) {
+        this.ccsid = ccsid;
+    }
+
+    public Session getSession() {
+        return session;
+    }
+
+    public Session getSession_asyn() {
+        return session_asyn;
+    }
+
+    private int port;
+    private String host;
+    private String qmgr;
+    private String channel;
+    private String username;
+    private String password;
+    private String sendq;
+    private String recvq;
+    private int ccsid;
 
     // Variables
     private Connection connection = null;
+
+
+    // 同步Session用于同步读写
     private Session session = null;
-    private Destination destination = null;
+
+    // 异步Session用于读
+    private Session session_asyn = null;
+
     private MessageProducer producer = null;
+    private MessageConsumer consumer = null;
+    private MessageConsumer consumer_asyn = null;
+    private MessageListener listener = null;
+
+    // 日志
+    private Logger logger=null;
 
     void init(){
-
-        System.out.println(System.getProperty("java.classpath"));
+        logger=LoggerFactory.getLogger(MessageQueueManager.class);
         try {
             // Create a connection factory
             // objects
             MQConnectionFactory factory = new MQConnectionFactory();
-            factory.setQueueManager("QM000");
-            factory.setHostName("localhost");
-            factory.setPort(1414);
-            factory.setChannel("SVRCONN");
+            factory.setQueueManager(qmgr);
+            factory.setHostName(host);
+            factory.setPort(port);
+            factory.setChannel(channel);
             factory.setTransportType(JMSC.MQJMS_TP_CLIENT_MQ_TCPIP);
+            factory.setCCSID(ccsid);
 
             // Create JMS objects
-            connection = factory.createConnection();
+            connection = factory.createConnection(username,password);
             session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-            destination = session.createQueue("000_1");
-            producer = session.createProducer(destination);
+            session_asyn = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 
-            long uniqueNumber = System.currentTimeMillis() % 1000;
-            TextMessage message = session
-                    .createTextMessage("JmsProducer: Your lucky number today is " + uniqueNumber);
+            producer = session.createProducer(session.createQueue(sendq));
+            consumer = session.createConsumer(session.createQueue(recvq));
+            consumer_asyn=session_asyn.createConsumer(session_asyn.createQueue(recvq));
+
+            // Set Listener
+            listener=new MessageListener() {
+                @Override
+                public void onMessage(Message message) {
+                    recvMessageAsynHandler(message);
+                }
+            };
+
+            consumer_asyn.setMessageListener(listener);
 
             // Start the connection
             connection.start();
 
-            // And, send the message
-            producer.send(message);
-            System.out.println("Sent message:\n" + message);
 
         } catch (JMSException jmsex) {
             jmsex.printStackTrace();
         }
 
     }
+
+    private void recvMessageAsynHandler(Message message) {
+        if(message instanceof TextMessage){
+            TextMessage textMessage=(TextMessage)message;
+            try {
+                logger.info(textMessage.getText());
+            } catch (JMSException e) {
+                e.printStackTrace();
+            }
+        }
+        else{
+            logger.warn("消息类型不符，非文本消息（TextMessage）："+message.toString());
+            return;
+        }
+
+
+    }
+
+    Message recvMessage() {
+        try{
+            return consumer.receive();
+        }catch(JMSException e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    void sendMessage(Message message) {
+        try{
+            producer.send(message);
+        }catch(JMSException e){
+            e.printStackTrace();
+        }
+    }
+
+    void sendMessage(String message) {
+        try{
+            producer.send(session.createTextMessage(message));
+        }catch(JMSException e){
+            e.printStackTrace();
+        }
+    }
+
+    private void dispose() {
+        try {
+            if(producer!=null) producer.close();
+            if(session !=null) session.close();
+            if(session_asyn !=null) session_asyn.close();
+            if(connection!=null) connection.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
 }
