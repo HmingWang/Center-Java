@@ -10,7 +10,7 @@ import javax.jms.*;
 
 
 /**
- * Created by 王海明 on 2017/6/24.
+ * Created by whaim on 2017/6/24.
  */
 
 @Component
@@ -75,10 +75,10 @@ public class MessageQueueManager {
     private Connection connection = null;
 
 
-    // 同步Session用于同步读写
+    // synchro session for synchro read and write
     private Session session = null;
 
-    // 异步Session用于读
+    // asynchro session for asynchro read
     private Session session_asyn = null;
 
     private MessageProducer producer = null;
@@ -86,21 +86,20 @@ public class MessageQueueManager {
     private MessageConsumer consumer_asyn = null;
     private MessageListener listener = null;
 
-    // 日志
+    // logger
     private Logger logger=null;
 
     void init(){
         logger=LoggerFactory.getLogger(MessageQueueManager.class);
         try {
-            // Create a connection factory
-            // objects
+            // Create a connection factory objects
             MQConnectionFactory factory = new MQConnectionFactory();
-            factory.setQueueManager(qmgr);
-            factory.setHostName(host);
-            factory.setPort(port);
-            factory.setChannel(channel);
-            factory.setTransportType(JMSC.MQJMS_TP_CLIENT_MQ_TCPIP);
-            factory.setCCSID(ccsid);
+                factory.setQueueManager(qmgr);
+                factory.setHostName(host);
+                factory.setPort(port);
+                factory.setChannel(channel);
+                factory.setTransportType(JMSC.MQJMS_TP_CLIENT_MQ_TCPIP);
+                factory.setCCSID(ccsid);
 
             // Create JMS objects
             connection = factory.createConnection(username,password);
@@ -141,7 +140,7 @@ public class MessageQueueManager {
             }
         }
         else{
-            logger.warn("消息类型不符，非文本消息（TextMessage）："+message.toString());
+            logger.warn("NOT TextMessage type message :"+message.toString());
             return;
         }
 

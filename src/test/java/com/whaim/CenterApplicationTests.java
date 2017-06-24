@@ -48,7 +48,7 @@ public class CenterApplicationTests {
         qmgr.init();
         try{
             TextMessage msg=qmgr.getSession().createTextMessage();
-            msg.setText("今天没戏唱");
+            msg.setText("test message");
             qmgr.sendMessage(msg);
             System.out.println(">>>>>>>>>>>>>>>>>send<<<<<<<<<<<<<<<");
         }catch(JMSException e){
