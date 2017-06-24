@@ -13,4 +13,12 @@ public class CenterApplicationTests {
 	public void contextLoads() {
 	}
 
+	@Test
+	public void testMQMgr(){
+
+		MessageQueueManager qmgr=new MessageQueueManager();
+
+		qmgr.init();
+	}
+
 }
