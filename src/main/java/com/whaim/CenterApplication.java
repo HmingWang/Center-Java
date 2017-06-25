@@ -28,9 +28,9 @@ public class CenterApplication implements CommandLineRunner{
 
         mqm.init();
 
-        boolean bLoop=true;
-        while(bLoop){
-
-        }
+//        boolean bLoop=true;
+//        while(bLoop){
+//
+//        }
     }
 }

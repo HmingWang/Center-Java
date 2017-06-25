@@ -19,15 +19,15 @@ public class CenterApplicationTests {
 
 	@Test
 	public void testMain() {
-	        CenterApplication.main(null);
+	        //CenterApplication.main(null);
 	}
 
 	@Test
 	public void testMQMgr(){
 		qmgr.init();
-		int count=1;
-		while(true){
-		    qmgr.sendMessage(Integer.toString(count++));
+		int count=1000;
+		while(count-->0){
+		    qmgr.sendMessage(Integer.toString(count));
         }
 	}
 
