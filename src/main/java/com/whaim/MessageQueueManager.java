@@ -3,6 +3,7 @@ package com.whaim;
 import com.ibm.mq.jms.MQConnectionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import com.ibm.mq.jms.JMSC;
 import org.springframework.stereotype.Component;
@@ -74,7 +75,6 @@ public class MessageQueueManager {
     // Variables
     private Connection connection = null;
 
-
     // synchro session for synchro read and write
     private Session session = null;
 
@@ -97,12 +97,13 @@ public class MessageQueueManager {
                 factory.setQueueManager(qmgr);
                 factory.setHostName(host);
                 factory.setPort(port);
-                factory.setChannel(channel);
+                //factory.setChannel(channel);
                 factory.setTransportType(JMSC.MQJMS_TP_CLIENT_MQ_TCPIP);
                 factory.setCCSID(ccsid);
 
             // Create JMS objects
             connection = factory.createConnection(username,password);
+            //connection = factory.createConnection();
             session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
             session_asyn = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 
@@ -140,7 +141,7 @@ public class MessageQueueManager {
             }
         }
         else{
-            logger.warn("NOT TextMessage type message :"+message.toString());
+            logger.warn("NOT TextMessage type message :"+message.toString().substring(0,10)+"...");
             return;
         }
 
