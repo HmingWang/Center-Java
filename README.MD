@@ -1,7 +1,7 @@
 # 处理中心程序-Java实现
 ## 功能点列表
 
-* Jms 整合ibm mq队列读取和发送 
+* [x] Jms 整合ibm mq队列读取和发送 
 * Xml报文解析和组装并schema校验
 * md5&rsa实现报文加核签
 * mybatis数据库持久化

@@ -17,10 +17,11 @@ public class StartupRunner implements CommandLineRunner {
 
     @Override
     public void run(String... strings) throws Exception {
-            Logger logger= LoggerFactory.getLogger(StartupRunner.class);
-            logger.info(">>>>>>>>>>Startup Runner<<<<<<<<<<<");
+        Logger logger= LoggerFactory.getLogger(StartupRunner.class);
+        logger.info(">>>>>>>>>>Startup Runner<<<<<<<<<<<");
 
-            mqt.setDaemon(true);
-            mqt.run();
+        //set daemon thread
+        mqt.setDaemon(true);
+        mqt.run();
     }
 }

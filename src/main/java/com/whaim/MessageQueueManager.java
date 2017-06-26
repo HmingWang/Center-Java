@@ -1,12 +1,12 @@
 package com.whaim;
 
-import com.ibm.mq.jms.MQConnectionFactory;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import com.ibm.mq.jms.JMSC;
 import org.springframework.stereotype.Component;
+import com.ibm.mq.jms.MQConnectionFactory;
+import com.ibm.mq.jms.JMSC;
 import javax.jms.*;
 
 
@@ -91,6 +91,7 @@ public class MessageQueueManager {
 
     void init(){
         logger=LoggerFactory.getLogger(MessageQueueManager.class);
+
         try {
             // Create a connection factory objects
             MQConnectionFactory factory = new MQConnectionFactory();

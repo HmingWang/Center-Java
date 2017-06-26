@@ -22,7 +22,7 @@ public class MessageQueueThread extends Thread {
     public void run() {
         super.run();
 
-        logger.info(">>>>>MQ listener started<<<<");
+        logger.info(">>>>>message queue listener thread startup<<<<");
 
         mqm.init();
 
