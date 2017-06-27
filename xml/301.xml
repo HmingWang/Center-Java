@@ -1,0 +1,45 @@
+{H:0110258409999F                SZFS0                            SZFS020140401094508XMLSZFS.301.002.01     00000000000000000000000000000000000000003U         }
+{S:b264ec118771df7762df6e6be042e990a6c51acdc1ae41d48d16d4d52b3782f3c79a16b8b0c3fdb0711abc419e4ff2512e8fa917af77677a7255dd20df961e76b659f6e01d4dada1e986755bd448f40da80040ca9a34d92603b351a3329b9c8e3d114ce2f7bc0e81387cf26a14ae0a596b4e561312157f2de98c9c194eab0237dcd5c65da4e1c40f3a08aa5ec8a9d66a4ab05bf63076d172f17717097406cefce6dbbb350e09a6312dd22c0876f0d51596dbd3f6c08fdf47ee96bf384fe59934addc6d6f8931b0b4f2b1998f890f6dc624ae5d00cccf8bf98b2c26bc894f666edd424d81088ff1f0f9fc8e4d2cc4a7393c3edd51d87f4b032198b6f36beba225                                                                                                                                }
+<?xml version="1.0" encoding="GBK"?>
+<Document xmlns="urn:szfs:std:szfs:2010:tech:xsd:szfs.301.002.01" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:szfs:std:szfs:2010:tech:xsd:szfs.301.002.01
+/home/szfscp/test/schema/szfs.301.002.01.xsd">
+	<PmtByAgcy>
+		<GrpHdr>
+			<TxTpCd>301</TxTpCd>
+			<CnsDt>20160421</CnsDt>
+			<TxId>4351041</TxId>
+			<InstgPty>A00100000001  </InstgPty>
+			<Ccy>CNY</Ccy>
+			<Amt>1600</Amt>
+			<TxCd>30102</TxCd>
+			<Areacd>005840</Areacd>
+			<AcctChckFlg>0</AcctChckFlg>
+		</GrpHdr>
+		<PmtByAgcyInf>
+			<CorprtnId>A00100000001  </CorprtnId>
+			<DbtrId>302584043105</DbtrId>
+			<CdtrId>303584000004</CdtrId>
+			<Dbtr>
+				<Issr>302584043105</Issr>
+				<Id>61000001</Id>
+				<Nm>测试账号一</Nm>
+				<Adr>替换户名付款人地址</Adr>
+			</Dbtr>
+			<Cdtr>
+				<Issr>303584000004</Issr>
+				<Id>61000005</Id>
+				<Nm>测试账号5</Nm>
+				<Adr>收款人地址在哪里</Adr>
+			</Cdtr>
+			<PmtItmCd>00800</PmtItmCd>
+			<Rmk>合昏尚知时，鸳鸯不独宿。但见新人笑，那闻旧人哭。</Rmk>
+			<AltDbtrFlg>0</AltDbtrFlg>
+			<AltDbtrNm>---乌合之众-123-保险有限公司</AltDbtrNm>
+			<ProCd>301A1</ProCd>
+			<AddtlLen>361</AddtlLen>
+			<AddtlInf>
+				<Cntt>30101                                二期优化测试                                                                                                                                                                                                                                                                                                                        </Cntt>
+			</AddtlInf>
+		</PmtByAgcyInf>
+	</PmtByAgcy>
+</Document>

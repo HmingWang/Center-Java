@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="GBK"?>
+<xs:schema xmlns="urn:szfs:std:szfs:2010:tech:xsd:szfs.302.002.01" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:szfs:std:szfs:2010:tech:xsd:szfs.302.002.01" elementFormDefault="qualified">
+	<xs:element name="Document" type="Document"/>
+	<xs:complexType name="Document">
+		<xs:sequence>
+			<xs:element name="ColltnChrgs" type="CollectionCharges"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CollectionCharges">
+		<xs:sequence>
+			<xs:element name="GrpHdr" type="GroupHeader1"/>
+			<xs:element name="ColltnChrgsInf" type="CollectionChargesInformation"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GroupHeader1">
+		<xs:sequence>
+			<xs:element name="TxTpCd" type="Exact3NumericText"/>
+			<xs:element name="CnsDt" type="Exact8NumericText"/>
+			<xs:element name="TxId" type="Max8NumericText"/>
+			<xs:element name="InstgPty" type="Max14Text"/>
+			<xs:element name="Ccy" type="Currencycode1"/>
+			<xs:element name="Amt" type="Max15NumericText"/>
+			<xs:element name="TxCd" type="Exact5NumericText"/>
+			<xs:element name="Areacd" type="AreaCode1"/>
+			<xs:element name="AcctChckFlg" type="AcctChckFlgCode1" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CollectionChargesInformation">
+		<xs:sequence>
+			<xs:element name="CorprtnId" type="Max14Text"/>
+			<xs:element name="DbtrId" type="Max14Text"/>
+			<xs:element name="CdtrId" type="Max14Text"/>
+			<xs:element name="Dbtr" type="Debtor1"/>
+			<xs:element name="Cdtr" type="Creditor1"/>
+			<xs:element name="PmtItmCd" type="Max5Text"/>
+			<xs:element name="ChanlId" type="Exact4Text" minOccurs="0"/>
+			<xs:element name="Rmk" type="Max127Text" minOccurs="0"/>
+			<xs:element name="AltCdtrFlg" type="AltCdtrFlgcode1" minOccurs="0"/>
+			<xs:element name="AltCdtrNm" type="Max60Text" minOccurs="0"/>
+			<xs:element name="ProCd" type="Exact5Text" minOccurs="0"/>			
+			<xs:element name="AddtlLen" type="Max8NumericText"/>
+			<xs:element name="AddtlInf" type="AdditionalInformation1" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AdditionalInformation1">
+		<xs:sequence>
+			<xs:element name="Cntt" type="Max4000Text"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Debtor1">
+		<xs:sequence>
+			<xs:element name="Issr" type="Max14Text"/>
+			<xs:element name="Id" type="Max32Text" minOccurs="0"/>
+			<xs:element name="Nm" type="Max60Text" minOccurs="0"/>
+			<xs:element name="Adr" type="Max60Text" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Creditor1">
+		<xs:sequence>
+			<xs:element name="Issr" type="Max14Text"/>
+			<xs:element name="Id" type="Max32Text"/>
+			<xs:element name="Nm" type="Max60Text"/>
+			<xs:element name="Adr" type="Max60Text" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="Exact3NumericText">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="3"/>
+			<xs:maxLength value="3"/>
+			<xs:pattern value="[0-9]{1,3}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Exact8NumericText">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="8"/>
+			<xs:maxLength value="8"/>
+			<xs:pattern value="[0-9]{1,8}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Max15NumericText">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="15"/>
+			<xs:pattern value="[0-9]{1,15}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Max8NumericText">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="8"/>
+			<xs:pattern value="[0-9]{1,8}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ISODateTime">
+		<xs:restriction base="xs:dateTime"/>
+	</xs:simpleType>
+	<xs:simpleType name="Max14Text">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="8"/>
+			<xs:maxLength value="14"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Currencycode1">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="CNY"/>
+			<xs:enumeration value="USD"/>
+			<xs:enumeration value="HKD"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DecimalNumber">
+		<xs:restriction base="xs:decimal">
+			<xs:fractionDigits value="2"/>
+			<xs:totalDigits value="15"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Exact5NumericText">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="5"/>
+			<xs:maxLength value="5"/>
+			<xs:pattern value="[0-9]{1,5}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AreaCode1">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="005840"/>
+			<xs:enumeration value="000000"/>
+			<xs:enumeration value="999999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AcctChckFlgCode1">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="0"/>
+			<xs:enumeration value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BillIndicatorCode1">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="0"/>
+			<xs:enumeration value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Max127Text">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="127"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Max32Text">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="32"/>
+			<xs:pattern value="[a-zA-Z0-9\-_]{1,32}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Max60Text">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="60"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Max2NumericText">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="2"/>
+			<xs:pattern value="[0-9]{1,2}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ISODate">
+		<xs:restriction base="xs:date"/>
+	</xs:simpleType>
+	<xs:simpleType name="Max4000Text">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="4000"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Max5Text">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="5"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Exact4Text">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="4"/>
+			<xs:maxLength value="4"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Exact5Text">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="5"/>
+			<xs:maxLength value="5"/>
+		</xs:restriction>
+	</xs:simpleType>	
+	<xs:simpleType name="DerivFlgcode1">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CtrctChckFlgcode1">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="0"/>
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Max12Text">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="12"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AltCdtrFlgcode1">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="0"/>
+			<xs:enumeration value="1"/>
+		</xs:restriction>
+	</xs:simpleType>	
+</xs:schema>

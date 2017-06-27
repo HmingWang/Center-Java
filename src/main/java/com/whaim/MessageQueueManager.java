@@ -1,13 +1,16 @@
 package com.whaim;
 
 
+import com.ibm.mq.jms.JMSC;
+import com.ibm.mq.jms.MQConnectionFactory;
+import org.aspectj.bridge.IMessageHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
-import com.ibm.mq.jms.MQConnectionFactory;
-import com.ibm.mq.jms.JMSC;
+
 import javax.jms.*;
+import java.io.UnsupportedEncodingException;
 
 
 /**
@@ -62,6 +65,10 @@ public class MessageQueueManager {
         return session_asyn;
     }
 
+    public void setCharset(String charset) {
+        this.charset = charset;
+    }
+
     private int port;
     private String host;
     private String qmgr;
@@ -71,6 +78,9 @@ public class MessageQueueManager {
     private String sendq;
     private String recvq;
     private int ccsid;
+    private String charset;
+
+    private boolean isInit=false;
 
     // Variables
     private Connection connection = null;
@@ -87,104 +97,127 @@ public class MessageQueueManager {
     private MessageListener listener = null;
 
     // logger
-    private Logger logger=null;
+    private static Logger logger = LoggerFactory.getLogger(MessageQueueManager.class);;
 
-    void init(){
-        logger=LoggerFactory.getLogger(MessageQueueManager.class);
+    void init(IMessageProcessor msgProcessor) {
 
         try {
             // Create a connection factory objects
             MQConnectionFactory factory = new MQConnectionFactory();
-                factory.setQueueManager(qmgr);
-                factory.setHostName(host);
-                factory.setPort(port);
-                //factory.setChannel(channel);
-                factory.setTransportType(JMSC.MQJMS_TP_CLIENT_MQ_TCPIP);
-                factory.setCCSID(ccsid);
+            factory.setQueueManager(qmgr);
+            factory.setHostName(host);
+            factory.setPort(port);
+            //factory.setChannel(channel);
+            factory.setTransportType(JMSC.MQJMS_TP_CLIENT_MQ_TCPIP);
+            factory.setCCSID(ccsid);
 
             // Create JMS objects
-            connection = factory.createConnection(username,password);
+            connection = factory.createConnection(username, password);
             //connection = factory.createConnection();
             session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
             session_asyn = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 
             producer = session.createProducer(session.createQueue(sendq));
             consumer = session.createConsumer(session.createQueue(recvq));
-            consumer_asyn=session_asyn.createConsumer(session_asyn.createQueue(recvq));
+            consumer_asyn = session_asyn.createConsumer(session_asyn.createQueue(recvq));
 
             // Set Listener
-            listener=new MessageListener() {
+            listener = new MessageListener() {
                 @Override
                 public void onMessage(Message message) {
-                    recvMessageAsynHandler(message);
+                    recvMessageAsynHandler(message,msgProcessor);
                 }
             };
 
             consumer_asyn.setMessageListener(listener);
+            isInit=true;
 
-            // Start the connection
-            connection.start();
-
-
-        } catch (JMSException jmsex) {
-            jmsex.printStackTrace();
+            logger.info("MessageQueueManager init...");
+        } catch (JMSException e) {
+            e.printStackTrace();
         }
 
     }
 
-    private void recvMessageAsynHandler(Message message) {
-        if(message instanceof TextMessage){
-            TextMessage textMessage=(TextMessage)message;
-            try {
-                logger.info(textMessage.getText());
-            } catch (JMSException e) {
-                e.printStackTrace();
+    public void start(){
+        try {
+            if (!isInit) {
+                logger.error("MessageQueueManager NOT init");
+                throw new JMSException("MQ Manager NOT init");
             }
-        }
-        else{
-            logger.warn("NOT TextMessage type message :"+message.toString().substring(0,10)+"...");
-            return;
+
+            connection.start();
+            logger.info("MessageQueueManager start...");
+        } catch (JMSException e) {
+            e.printStackTrace();
         }
 
+    }
 
+    private void recvMessageAsynHandler(Message message,IMessageProcessor msgProcessor) {
+
+        try {
+            if (message instanceof BytesMessage) {
+                BytesMessage bytesMessage = (BytesMessage) message;
+
+                byte[] bytes = new byte[(int) bytesMessage.getBodyLength()];
+                bytesMessage.readBytes(bytes);
+
+                String msgString = new String(bytes, charset);
+
+                logger.info("BytesMessage:" + msgString);
+                //Interface IMessageProcessor method
+                if(!msgProcessor.processMessage(msgString)){
+                    throw new JMSException("user class method implement interface process message failed.");
+                }
+
+            } else {
+                logger.warn("received UNKNOWN type message ...");
+                logger.debug(message.toString());
+            }
+
+        } catch (JMSException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
     }
 
     Message recvMessage() {
-        try{
+        try {
             return consumer.receive();
-        }catch(JMSException e){
+        } catch (JMSException e) {
             e.printStackTrace();
             return null;
         }
     }
 
     void sendMessage(Message message) {
-        try{
+        try {
             producer.send(message);
-        }catch(JMSException e){
+        } catch (JMSException e) {
             e.printStackTrace();
         }
     }
 
     void sendMessage(String message) {
-        try{
+        try {
             producer.send(session.createTextMessage(message));
-        }catch(JMSException e){
+        } catch (JMSException e) {
             e.printStackTrace();
         }
     }
 
     private void dispose() {
         try {
-            if(producer!=null) producer.close();
-            if(session !=null) session.close();
-            if(session_asyn !=null) session_asyn.close();
-            if(connection!=null) connection.close();
+            if (producer != null) producer.close();
+            if (session != null) session.close();
+            if (session_asyn != null) session_asyn.close();
+            if (connection != null) connection.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
 
 
 }

@@ -17,6 +17,9 @@ public class CenterApplicationTests {
     @Autowired
     private MessageQueueManager qmgr;
 
+    @Autowired
+    private MessageParser mp;
+
 	@Test
 	public void testMain() {
 	        //CenterApplication.main(null);
@@ -24,7 +27,7 @@ public class CenterApplicationTests {
 
 	@Test
 	public void testMQMgr(){
-		qmgr.init();
+		qmgr.init(mp);
 		int count=1000;
 		while(count-->0){
 		    qmgr.sendMessage(Integer.toString(count));
@@ -33,7 +36,7 @@ public class CenterApplicationTests {
 
 	@Test
     public void testRecvMessage(){
-	    qmgr.init();
+	    qmgr.init(mp);
         String msg= null;
         try {
             msg = ((TextMessage) qmgr.recvMessage()).getText();
@@ -45,7 +48,7 @@ public class CenterApplicationTests {
 
     @Test
     public void testSendMessage(){
-        qmgr.init();
+        qmgr.init(mp);
         try{
             TextMessage msg=qmgr.getSession().createTextMessage();
             msg.setText("test message");
@@ -54,6 +57,12 @@ public class CenterApplicationTests {
         }catch(JMSException e){
             e.printStackTrace();
         }
+    }
+
+    @Test
+    public void testMQMStart(){
+        qmgr.init(mp);
+        qmgr.start();
     }
 
 }

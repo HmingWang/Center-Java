@@ -16,6 +16,9 @@ public class MessageQueueThread extends Thread {
     @Autowired
     private MessageQueueManager mqm;
 
+    @Autowired
+    private MessageParser mp;
+
     private static Logger logger = LoggerFactory.getLogger(MessageQueueThread.class);
 
     @Override
@@ -24,7 +27,8 @@ public class MessageQueueThread extends Thread {
 
         logger.info(">>>>>message queue listener thread startup<<<<");
 
-        mqm.init();
+        mqm.init(mp);
+        mqm.start();
 
     }
 }
