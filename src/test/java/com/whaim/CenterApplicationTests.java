@@ -6,8 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.jms.BytesMessage;
 import javax.jms.JMSException;
 import javax.jms.TextMessage;
+
+import static java.lang.Thread.sleep;
 
 
 @RunWith(SpringRunner.class)
@@ -18,17 +21,21 @@ public class CenterApplicationTests {
     private MessageQueueManager qmgr;
 
     @Autowired
-    private MessageParser mp;
+    private ServiceDispatcherImpl mp;
 
 	@Test
 	public void testMain() {
 	        //CenterApplication.main(null);
+        String test="abcdefghijklmnopqrstuvwxyz";
+        String b=test.substring(1,5);
+
+        System.out.println(b);
 	}
 
 	@Test
 	public void testMQMgr(){
 		qmgr.init(mp);
-		int count=1000;
+		int count=10;
 		while(count-->0){
 		    qmgr.sendMessage(Integer.toString(count));
         }
@@ -49,12 +56,21 @@ public class CenterApplicationTests {
     @Test
     public void testSendMessage(){
         qmgr.init(mp);
+        qmgr.start();
+
         try{
-            TextMessage msg=qmgr.getSession().createTextMessage();
-            msg.setText("test message");
+            BytesMessage msg=qmgr.getSession().createBytesMessage();
+
+            msg.writeBytes(new String("test message").getBytes());
             qmgr.sendMessage(msg);
             System.out.println(">>>>>>>>>>>>>>>>>send<<<<<<<<<<<<<<<");
         }catch(JMSException e){
+            e.printStackTrace();
+        }
+
+        try {
+            sleep(10000);
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }

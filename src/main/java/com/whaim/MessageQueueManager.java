@@ -94,12 +94,11 @@ public class MessageQueueManager {
     private MessageProducer producer = null;
     private MessageConsumer consumer = null;
     private MessageConsumer consumer_asyn = null;
-    private MessageListener listener = null;
 
     // logger
     private static Logger logger = LoggerFactory.getLogger(MessageQueueManager.class);;
 
-    void init(IMessageProcessor msgProcessor) {
+    void init(IServiceDispatcher dispatcher) {
 
         try {
             // Create a connection factory objects
@@ -122,14 +121,13 @@ public class MessageQueueManager {
             consumer_asyn = session_asyn.createConsumer(session_asyn.createQueue(recvq));
 
             // Set Listener
-            listener = new MessageListener() {
+            consumer_asyn.setMessageListener(new MessageListener() {
                 @Override
                 public void onMessage(Message message) {
-                    recvMessageAsynHandler(message,msgProcessor);
+                    recvMessageAsynHandler(message,dispatcher);
                 }
-            };
+            });
 
-            consumer_asyn.setMessageListener(listener);
             isInit=true;
 
             logger.info("MessageQueueManager init...");
@@ -139,6 +137,7 @@ public class MessageQueueManager {
 
     }
 
+    //Asyn Method Use
     public void start(){
         try {
             if (!isInit) {
@@ -154,7 +153,7 @@ public class MessageQueueManager {
 
     }
 
-    private void recvMessageAsynHandler(Message message,IMessageProcessor msgProcessor) {
+    private void recvMessageAsynHandler(Message message,IServiceDispatcher dispatcher) {
 
         try {
             if (message instanceof BytesMessage) {
@@ -163,12 +162,10 @@ public class MessageQueueManager {
                 byte[] bytes = new byte[(int) bytesMessage.getBodyLength()];
                 bytesMessage.readBytes(bytes);
 
-                String msgString = new String(bytes, charset);
-
-                logger.info("BytesMessage:" + msgString);
+                logger.info("BytesMessage:" );
                 //Interface IMessageProcessor method
-                if(!msgProcessor.processMessage(msgString)){
-                    throw new JMSException("user class method implement interface process message failed.");
+                if(!dispatcher.dispatch(bytes)){
+                    logger.error("user class method implement interface dispatch message failed.");
                 }
 
             } else {
@@ -176,10 +173,10 @@ public class MessageQueueManager {
                 logger.debug(message.toString());
             }
 
-        } catch (JMSException e) {
+        } catch (Throwable e) {
             e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
+//        } catch (UnsupportedEncodingException e) {
+//            e.printStackTrace();
         }
     }
 

@@ -5,6 +5,7 @@ package com.whaim;
  *
  * Process message when received MQ message
  */
-public interface IMessageProcessor {
-    boolean processMessage(String msg);
+public interface IServiceDispatcher {
+
+    boolean dispatch(byte[] msg);
 }
