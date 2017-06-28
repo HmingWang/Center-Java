@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="GBK"?>
-<xs:schema xmlns="urn:szfs:std:szfs:2010:tech:xsd:szfs.301.002.01" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:szfs:std:szfs:2010:tech:xsd:szfs.301.002.01" elementFormDefault="qualified">
+<xs:schema xmlns="urn:szfs:std:szfs:2010:tech:xsd:szfs.301.002.01"
+		   xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		   targetNamespace="urn:szfs:std:szfs:2010:tech:xsd:szfs.301.002.01"
+		   elementFormDefault="qualified">
 	<xs:element name="Document" type="Document"/>
 	<xs:complexType name="Document">
 		<xs:sequence>

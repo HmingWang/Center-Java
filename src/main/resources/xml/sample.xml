@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="GBK"?>
+<Document xmlns="urn:szfs:std:szfs:2010:tech:xsd:szfs.301.002.01" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:szfs:std:szfs:2010:tech:xsd:szfs.301.002.01
+/schema/szfs.301.002.01.xsd">
+    <PmtByAgcy>
+        <GrpHdr>
+            <TxTpCd>301</TxTpCd>
+            <CnsDt>20160421</CnsDt>
+            <TxId>4351041</TxId>
+            <InstgPty>A00100000001  </InstgPty>
+            <Ccy>CNY</Ccy>
+            <Amt>1600</Amt>
+            <TxCd>30102</TxCd>
+            <Areacd>005840</Areacd>
+            <AcctChckFlg>0</AcctChckFlg>
+        </GrpHdr>
+        <PmtByAgcyInf>
+            <CorprtnId>A00100000001  </CorprtnId>
+            <DbtrId>302584043105</DbtrId>
+            <CdtrId>303584000004</CdtrId>
+            <Dbtr>
+                <Issr>302584043105</Issr>
+                <Id>61000001</Id>
+                <Nm>????????</Nm>
+                <Adr>?滻????????????</Adr>
+            </Dbtr>
+            <Cdtr>
+                <Issr>303584000004</Issr>
+                <Id>61000005</Id>
+                <Nm>???????5</Nm>
+                <Adr>?????????????</Adr>
+            </Cdtr>
+            <PmtItmCd>00800</PmtItmCd>
+            <Rmk>?????????????????????????Ц???????????</Rmk>
+            <AltDbtrFlg>0</AltDbtrFlg>
+            <AltDbtrNm>---??????-123-??????????</AltDbtrNm>
+            <ProCd>301A1</ProCd>
+            <AddtlLen>361</AddtlLen>
+            <AddtlInf>
+                <Cntt>30101                                ???????????                                                                                                                                                                                                                                                                                                                        </Cntt>
+            </AddtlInf>
+        </PmtByAgcyInf>
+    </PmtByAgcy>
+</Document>
