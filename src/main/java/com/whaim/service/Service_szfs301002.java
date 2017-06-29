@@ -23,7 +23,7 @@ public class Service_szfs301002 implements IService{
     public void process(byte[] msg) {
 
 
-        parser.setNamespace("szfs.std.szfs._2010.tech.xsd.szfs_301_002");
+        parser.setNamespace(Document.class.getPackage().getName());
         parser.setSchemaFilePath("E:\\Git\\center\\src\\main\\resources\\schema\\szfs.301.002.01.xsd");
         doc=parser.parser(msg);
 
