@@ -1,11 +1,9 @@
-package service;
+package com.whaim.service;
 
-import com.whaim.DataParser;
+import com.whaim.datagram.DataParser;
 import org.junit.Test;
 
 import java.io.FileReader;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by 王海明 on 2017/6/29.

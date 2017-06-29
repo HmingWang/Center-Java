@@ -1,5 +1,6 @@
 package com.whaim;
 
+import com.whaim.datagram.DataParser;
 import org.junit.Test;
 
 import java.io.FileReader;

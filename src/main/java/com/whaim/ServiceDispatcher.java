@@ -1,7 +1,9 @@
 package com.whaim;
 
+import com.whaim.mq.IDispatcher;
 import org.springframework.stereotype.Component;
-import service.Service_szfs301002;
+import com.whaim.service.IService;
+import com.whaim.service.Service_szfs301002;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,7 +16,7 @@ import java.util.Map;
 @Component
 public class ServiceDispatcher implements IDispatcher {
 
-    private Map<String,IService> serviceMap;
+    private Map<String, IService> serviceMap;
 
     public void registerService(IService service){
         String code=service.getMessageTye();
@@ -37,7 +39,7 @@ public class ServiceDispatcher implements IDispatcher {
         /*
         TODO: dispatch message
         1. parser message
-        2. send byte message to the process service
+        2. send byte message to the process com.whaim.service
         */
 
         String msgType=getMsgType(msg);
@@ -51,7 +53,7 @@ public class ServiceDispatcher implements IDispatcher {
     // constructor function by singleton pattern
     public ServiceDispatcher(){
         serviceMap=new HashMap<String,IService>();
-        //register service
+        //register com.whaim.service
         Service_szfs301002 szfs301002=new Service_szfs301002();
         registerService(szfs301002);
     }

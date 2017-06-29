@@ -1,5 +1,6 @@
 package com.whaim;
 
+import com.whaim.mq.MessageQueueManager;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +13,6 @@ import javax.jms.TextMessage;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 
 import static java.lang.Thread.sleep;
 

@@ -1,4 +1,4 @@
-package com.whaim;
+package com.whaim.datagram;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -6,7 +6,6 @@ import javax.xml.bind.JAXBIntrospector;
 import javax.xml.bind.Unmarshaller;
 
 import java.io.StringReader;
-import java.lang.reflect.ParameterizedType;
 
 /**
  * Created by whaim on 2017/6/28.

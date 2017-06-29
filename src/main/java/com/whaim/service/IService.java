@@ -1,8 +1,8 @@
-package com.whaim;
+package com.whaim.service;
 
 /**
  * Created by whaim on 2017/6/28.
- * message process service
+ * message process com.whaim.service
  */
 public interface IService {
     // get message type

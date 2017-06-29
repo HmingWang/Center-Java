@@ -1,4 +1,4 @@
-package com.whaim;
+package com.whaim.mq;
 
 /**
  * Created by whaim on 2017/6/27.

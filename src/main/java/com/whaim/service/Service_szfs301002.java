@@ -1,8 +1,7 @@
-package service;
+package com.whaim.service;
 
-import com.whaim.DataParser;
-import com.whaim.Datagram;
-import com.whaim.IService;
+import com.whaim.datagram.DataParser;
+import com.whaim.datagram.Datagram;
 import szfs.std.szfs._2010.tech.xsd.szfs_301_002.Document;
 
 /**

@@ -1,4 +1,4 @@
-package com.whaim;
+package com.whaim.mq;
 
 
 import com.ibm.mq.jms.JMSC;
@@ -97,7 +97,7 @@ public class MessageQueueManager {
     // logger
     private static Logger logger = LoggerFactory.getLogger(MessageQueueManager.class);;
 
-    void init(IDispatcher dsp) {
+    public void init(IDispatcher dsp) {
 
         try {
             // Create a connection factory objects
@@ -180,7 +180,7 @@ public class MessageQueueManager {
         }
     }
 
-    Message recvMessage() {
+    public Message recvMessage() {
         try {
             return consumer.receive();
         } catch (JMSException e) {
@@ -189,7 +189,7 @@ public class MessageQueueManager {
         }
     }
 
-    void sendMessage(Message message) {
+    public void sendMessage(Message message) {
         try {
             producer.send(message);
         } catch (JMSException e) {
@@ -197,7 +197,7 @@ public class MessageQueueManager {
         }
     }
 
-    void sendMessage(String message) {
+    public void sendMessage(String message) {
         try {
             producer.send(session.createTextMessage(message));
         } catch (JMSException e) {

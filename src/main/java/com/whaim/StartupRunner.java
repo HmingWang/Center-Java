@@ -1,11 +1,10 @@
 package com.whaim;
 
+import com.whaim.mq.MessageQueueThread;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.Bean;
 
 /**
  * Created by whaim on 2017/6/26.
