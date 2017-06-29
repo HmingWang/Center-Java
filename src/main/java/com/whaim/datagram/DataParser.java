@@ -1,10 +1,15 @@
 package com.whaim.datagram;
 
+import org.xml.sax.SAXException;
+
+import javax.xml.XMLConstants;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.JAXBIntrospector;
 import javax.xml.bind.Unmarshaller;
+import javax.xml.validation.SchemaFactory;
 
+import java.io.File;
 import java.io.StringReader;
 
 /**
@@ -16,6 +21,7 @@ public class DataParser<Document> {
 
     private Document dc;
     private String namespace;
+    private String schemaFilePath;
 
     public Datagram<Document> parser(byte[] msg){
 
@@ -38,9 +44,13 @@ public class DataParser<Document> {
         try {
             JAXBContext jc = JAXBContext.newInstance(namespace);
             Unmarshaller u = jc.createUnmarshaller();
+            if(schemaFilePath!=null&&!schemaFilePath.isEmpty())
+                u.setSchema(SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI).newSchema(new File(schemaFilePath)));
             dc= (Document) JAXBIntrospector.getValue(u.unmarshal(new StringReader(xmlbody)));
 
         } catch (JAXBException e) {
+            e.printStackTrace();
+        } catch (SAXException e) {
             e.printStackTrace();
         }
 
@@ -50,4 +60,5 @@ public class DataParser<Document> {
     public void setNamespace(String ns){
         namespace=ns;
     }
+    public void setSchemaFilePath(String sPath){schemaFilePath=sPath;}
 }
