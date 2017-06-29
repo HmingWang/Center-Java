@@ -1,8 +1,8 @@
 //
-// ´ËÎÄ¼şÊÇÓÉ JavaTM Architecture for XML Binding (JAXB) ÒıÓÃÊµÏÖ v2.2.8-b130911.1802 Éú³ÉµÄ
-// Çë·ÃÎÊ <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
-// ÔÚÖØĞÂ±àÒëÔ´Ä£Ê½Ê±, ¶Ô´ËÎÄ¼şµÄËùÓĞĞŞ¸Ä¶¼½«¶ªÊ§¡£
-// Éú³ÉÊ±¼ä: 2017.06.28 Ê±¼ä 09:53:29 AM CST 
+// æ­¤æ–‡ä»¶æ˜¯ç”± JavaTM Architecture for XML Binding (JAXB) å¼•ç”¨å®ç° v2.2.8-b130911.1802 ç”Ÿæˆçš„
+// è¯·è®¿é—® <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
+// åœ¨é‡æ–°ç¼–è¯‘æºæ¨¡å¼æ—¶, å¯¹æ­¤æ–‡ä»¶çš„æ‰€æœ‰ä¿®æ”¹éƒ½å°†ä¸¢å¤±ã€‚
+// ç”Ÿæˆæ—¶é—´: 2017.06.29 æ—¶é—´ 11:06:28 PM CST 
 //
 
 
@@ -16,9 +16,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>GroupHeader1 complex typeµÄ Java Àà¡£
+ * <p>GroupHeader1 complex typeçš„ Java ç±»ã€‚
  * 
- * <p>ÒÔÏÂÄ£Ê½Æ¬¶ÎÖ¸¶¨°üº¬ÔÚ´ËÀàÖĞµÄÔ¤ÆÚÄÚÈİ¡£
+ * <p>ä»¥ä¸‹æ¨¡å¼ç‰‡æ®µæŒ‡å®šåŒ…å«åœ¨æ­¤ç±»ä¸­çš„é¢„æœŸå†…å®¹ã€‚
  * 
  * <pre>
  * &lt;complexType name="GroupHeader1">
@@ -77,7 +77,7 @@ public class GroupHeader1 {
     protected String acctChckFlg;
 
     /**
-     * »ñÈ¡txTpCdÊôĞÔµÄÖµ¡£
+     * è·å–txTpCdå±æ€§çš„å€¼ã€‚
      * 
      * @return
      *     possible object is
@@ -89,7 +89,7 @@ public class GroupHeader1 {
     }
 
     /**
-     * ÉèÖÃtxTpCdÊôĞÔµÄÖµ¡£
+     * è®¾ç½®txTpCdå±æ€§çš„å€¼ã€‚
      * 
      * @param value
      *     allowed object is
@@ -101,7 +101,7 @@ public class GroupHeader1 {
     }
 
     /**
-     * »ñÈ¡cnsDtÊôĞÔµÄÖµ¡£
+     * è·å–cnsDtå±æ€§çš„å€¼ã€‚
      * 
      * @return
      *     possible object is
@@ -113,7 +113,7 @@ public class GroupHeader1 {
     }
 
     /**
-     * ÉèÖÃcnsDtÊôĞÔµÄÖµ¡£
+     * è®¾ç½®cnsDtå±æ€§çš„å€¼ã€‚
      * 
      * @param value
      *     allowed object is
@@ -125,7 +125,7 @@ public class GroupHeader1 {
     }
 
     /**
-     * »ñÈ¡txIdÊôĞÔµÄÖµ¡£
+     * è·å–txIdå±æ€§çš„å€¼ã€‚
      * 
      * @return
      *     possible object is
@@ -137,7 +137,7 @@ public class GroupHeader1 {
     }
 
     /**
-     * ÉèÖÃtxIdÊôĞÔµÄÖµ¡£
+     * è®¾ç½®txIdå±æ€§çš„å€¼ã€‚
      * 
      * @param value
      *     allowed object is
@@ -149,7 +149,7 @@ public class GroupHeader1 {
     }
 
     /**
-     * »ñÈ¡instgPtyÊôĞÔµÄÖµ¡£
+     * è·å–instgPtyå±æ€§çš„å€¼ã€‚
      * 
      * @return
      *     possible object is
@@ -161,7 +161,7 @@ public class GroupHeader1 {
     }
 
     /**
-     * ÉèÖÃinstgPtyÊôĞÔµÄÖµ¡£
+     * è®¾ç½®instgPtyå±æ€§çš„å€¼ã€‚
      * 
      * @param value
      *     allowed object is
@@ -173,7 +173,7 @@ public class GroupHeader1 {
     }
 
     /**
-     * »ñÈ¡ccyÊôĞÔµÄÖµ¡£
+     * è·å–ccyå±æ€§çš„å€¼ã€‚
      * 
      * @return
      *     possible object is
@@ -185,7 +185,7 @@ public class GroupHeader1 {
     }
 
     /**
-     * ÉèÖÃccyÊôĞÔµÄÖµ¡£
+     * è®¾ç½®ccyå±æ€§çš„å€¼ã€‚
      * 
      * @param value
      *     allowed object is
@@ -197,7 +197,7 @@ public class GroupHeader1 {
     }
 
     /**
-     * »ñÈ¡amtÊôĞÔµÄÖµ¡£
+     * è·å–amtå±æ€§çš„å€¼ã€‚
      * 
      * @return
      *     possible object is
@@ -209,7 +209,7 @@ public class GroupHeader1 {
     }
 
     /**
-     * ÉèÖÃamtÊôĞÔµÄÖµ¡£
+     * è®¾ç½®amtå±æ€§çš„å€¼ã€‚
      * 
      * @param value
      *     allowed object is
@@ -221,7 +221,7 @@ public class GroupHeader1 {
     }
 
     /**
-     * »ñÈ¡txCdÊôĞÔµÄÖµ¡£
+     * è·å–txCdå±æ€§çš„å€¼ã€‚
      * 
      * @return
      *     possible object is
@@ -233,7 +233,7 @@ public class GroupHeader1 {
     }
 
     /**
-     * ÉèÖÃtxCdÊôĞÔµÄÖµ¡£
+     * è®¾ç½®txCdå±æ€§çš„å€¼ã€‚
      * 
      * @param value
      *     allowed object is
@@ -245,7 +245,7 @@ public class GroupHeader1 {
     }
 
     /**
-     * »ñÈ¡areacdÊôĞÔµÄÖµ¡£
+     * è·å–areacdå±æ€§çš„å€¼ã€‚
      * 
      * @return
      *     possible object is
@@ -257,7 +257,7 @@ public class GroupHeader1 {
     }
 
     /**
-     * ÉèÖÃareacdÊôĞÔµÄÖµ¡£
+     * è®¾ç½®areacdå±æ€§çš„å€¼ã€‚
      * 
      * @param value
      *     allowed object is
@@ -269,7 +269,7 @@ public class GroupHeader1 {
     }
 
     /**
-     * »ñÈ¡acctChckFlgÊôĞÔµÄÖµ¡£
+     * è·å–acctChckFlgå±æ€§çš„å€¼ã€‚
      * 
      * @return
      *     possible object is
@@ -281,7 +281,7 @@ public class GroupHeader1 {
     }
 
     /**
-     * ÉèÖÃacctChckFlgÊôĞÔµÄÖµ¡£
+     * è®¾ç½®acctChckFlgå±æ€§çš„å€¼ã€‚
      * 
      * @param value
      *     allowed object is

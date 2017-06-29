@@ -7,7 +7,7 @@ import java.io.FileReader;
 /**
  * Created by whaim on 2017/6/28.
  */
-public class XmlParserTest {
+public class DataParserTest {
 
 
     private class T<Integer>
@@ -32,7 +32,7 @@ public class XmlParserTest {
 
 
 
-        XmlParser parser=  new XmlParser();
+        DataParser parser=  new DataParser();
 
         FileReader fr= new FileReader("Z:\\git\\Center-Java\\src\\main\\resources\\xml\\sample.xml");
         char[] buffer=new char[2048];
@@ -42,8 +42,6 @@ public class XmlParserTest {
         String msg=new String(buffer).trim();
         System.out.println(msg);
 
-        parser.parser(msg);
-        System.out.println(parser.dc.toString());
     }
 
 }

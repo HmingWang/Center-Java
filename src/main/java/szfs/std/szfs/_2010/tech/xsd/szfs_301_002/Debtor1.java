@@ -1,8 +1,8 @@
 //
-// ´ËÎÄ¼şÊÇÓÉ JavaTM Architecture for XML Binding (JAXB) ÒıÓÃÊµÏÖ v2.2.8-b130911.1802 Éú³ÉµÄ
-// Çë·ÃÎÊ <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
-// ÔÚÖØĞÂ±àÒëÔ´Ä£Ê½Ê±, ¶Ô´ËÎÄ¼şµÄËùÓĞĞŞ¸Ä¶¼½«¶ªÊ§¡£
-// Éú³ÉÊ±¼ä: 2017.06.28 Ê±¼ä 09:53:29 AM CST 
+// æ­¤æ–‡ä»¶æ˜¯ç”± JavaTM Architecture for XML Binding (JAXB) å¼•ç”¨å®ç° v2.2.8-b130911.1802 ç”Ÿæˆçš„
+// è¯·è®¿é—® <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
+// åœ¨é‡æ–°ç¼–è¯‘æºæ¨¡å¼æ—¶, å¯¹æ­¤æ–‡ä»¶çš„æ‰€æœ‰ä¿®æ”¹éƒ½å°†ä¸¢å¤±ã€‚
+// ç”Ÿæˆæ—¶é—´: 2017.06.29 æ—¶é—´ 11:06:28 PM CST 
 //
 
 
@@ -15,9 +15,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Debtor1 complex typeµÄ Java Àà¡£
+ * <p>Debtor1 complex typeçš„ Java ç±»ã€‚
  * 
- * <p>ÒÔÏÂÄ£Ê½Æ¬¶ÎÖ¸¶¨°üº¬ÔÚ´ËÀàÖĞµÄÔ¤ÆÚÄÚÈİ¡£
+ * <p>ä»¥ä¸‹æ¨¡å¼ç‰‡æ®µæŒ‡å®šåŒ…å«åœ¨æ­¤ç±»ä¸­çš„é¢„æœŸå†…å®¹ã€‚
  * 
  * <pre>
  * &lt;complexType name="Debtor1">
@@ -55,7 +55,7 @@ public class Debtor1 {
     protected String adr;
 
     /**
-     * »ñÈ¡issrÊôĞÔµÄÖµ¡£
+     * è·å–issrå±æ€§çš„å€¼ã€‚
      * 
      * @return
      *     possible object is
@@ -67,7 +67,7 @@ public class Debtor1 {
     }
 
     /**
-     * ÉèÖÃissrÊôĞÔµÄÖµ¡£
+     * è®¾ç½®issrå±æ€§çš„å€¼ã€‚
      * 
      * @param value
      *     allowed object is
@@ -79,7 +79,7 @@ public class Debtor1 {
     }
 
     /**
-     * »ñÈ¡idÊôĞÔµÄÖµ¡£
+     * è·å–idå±æ€§çš„å€¼ã€‚
      * 
      * @return
      *     possible object is
@@ -91,7 +91,7 @@ public class Debtor1 {
     }
 
     /**
-     * ÉèÖÃidÊôĞÔµÄÖµ¡£
+     * è®¾ç½®idå±æ€§çš„å€¼ã€‚
      * 
      * @param value
      *     allowed object is
@@ -103,7 +103,7 @@ public class Debtor1 {
     }
 
     /**
-     * »ñÈ¡nmÊôĞÔµÄÖµ¡£
+     * è·å–nmå±æ€§çš„å€¼ã€‚
      * 
      * @return
      *     possible object is
@@ -115,7 +115,7 @@ public class Debtor1 {
     }
 
     /**
-     * ÉèÖÃnmÊôĞÔµÄÖµ¡£
+     * è®¾ç½®nmå±æ€§çš„å€¼ã€‚
      * 
      * @param value
      *     allowed object is
@@ -127,7 +127,7 @@ public class Debtor1 {
     }
 
     /**
-     * »ñÈ¡adrÊôĞÔµÄÖµ¡£
+     * è·å–adrå±æ€§çš„å€¼ã€‚
      * 
      * @return
      *     possible object is
@@ -139,7 +139,7 @@ public class Debtor1 {
     }
 
     /**
-     * ÉèÖÃadrÊôĞÔµÄÖµ¡£
+     * è®¾ç½®adrå±æ€§çš„å€¼ã€‚
      * 
      * @param value
      *     allowed object is

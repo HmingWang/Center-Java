@@ -1,8 +1,8 @@
 //
-// ´ËÎÄ¼şÊÇÓÉ JavaTM Architecture for XML Binding (JAXB) ÒıÓÃÊµÏÖ v2.2.8-b130911.1802 Éú³ÉµÄ
-// Çë·ÃÎÊ <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
-// ÔÚÖØĞÂ±àÒëÔ´Ä£Ê½Ê±, ¶Ô´ËÎÄ¼şµÄËùÓĞĞŞ¸Ä¶¼½«¶ªÊ§¡£
-// Éú³ÉÊ±¼ä: 2017.06.28 Ê±¼ä 09:53:29 AM CST 
+// æ­¤æ–‡ä»¶æ˜¯ç”± JavaTM Architecture for XML Binding (JAXB) å¼•ç”¨å®ç° v2.2.8-b130911.1802 ç”Ÿæˆçš„
+// è¯·è®¿é—® <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
+// åœ¨é‡æ–°ç¼–è¯‘æºæ¨¡å¼æ—¶, å¯¹æ­¤æ–‡ä»¶çš„æ‰€æœ‰ä¿®æ”¹éƒ½å°†ä¸¢å¤±ã€‚
+// ç”Ÿæˆæ—¶é—´: 2017.06.29 æ—¶é—´ 11:06:28 PM CST 
 //
 
 
@@ -15,9 +15,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>PaymentByAgencyInformation complex typeµÄ Java Àà¡£
+ * <p>PaymentByAgencyInformation complex typeçš„ Java ç±»ã€‚
  * 
- * <p>ÒÔÏÂÄ£Ê½Æ¬¶ÎÖ¸¶¨°üº¬ÔÚ´ËÀàÖĞµÄÔ¤ÆÚÄÚÈİ¡£
+ * <p>ä»¥ä¸‹æ¨¡å¼ç‰‡æ®µæŒ‡å®šåŒ…å«åœ¨æ­¤ç±»ä¸­çš„é¢„æœŸå†…å®¹ã€‚
  * 
  * <pre>
  * &lt;complexType name="PaymentByAgencyInformation">
@@ -95,7 +95,7 @@ public class PaymentByAgencyInformation {
     protected AdditionalInformation1 addtlInf;
 
     /**
-     * »ñÈ¡corprtnIdÊôĞÔµÄÖµ¡£
+     * è·å–corprtnIdå±æ€§çš„å€¼ã€‚
      * 
      * @return
      *     possible object is
@@ -107,7 +107,7 @@ public class PaymentByAgencyInformation {
     }
 
     /**
-     * ÉèÖÃcorprtnIdÊôĞÔµÄÖµ¡£
+     * è®¾ç½®corprtnIdå±æ€§çš„å€¼ã€‚
      * 
      * @param value
      *     allowed object is
@@ -119,7 +119,7 @@ public class PaymentByAgencyInformation {
     }
 
     /**
-     * »ñÈ¡dbtrIdÊôĞÔµÄÖµ¡£
+     * è·å–dbtrIdå±æ€§çš„å€¼ã€‚
      * 
      * @return
      *     possible object is
@@ -131,7 +131,7 @@ public class PaymentByAgencyInformation {
     }
 
     /**
-     * ÉèÖÃdbtrIdÊôĞÔµÄÖµ¡£
+     * è®¾ç½®dbtrIdå±æ€§çš„å€¼ã€‚
      * 
      * @param value
      *     allowed object is
@@ -143,7 +143,7 @@ public class PaymentByAgencyInformation {
     }
 
     /**
-     * »ñÈ¡cdtrIdÊôĞÔµÄÖµ¡£
+     * è·å–cdtrIdå±æ€§çš„å€¼ã€‚
      * 
      * @return
      *     possible object is
@@ -155,7 +155,7 @@ public class PaymentByAgencyInformation {
     }
 
     /**
-     * ÉèÖÃcdtrIdÊôĞÔµÄÖµ¡£
+     * è®¾ç½®cdtrIdå±æ€§çš„å€¼ã€‚
      * 
      * @param value
      *     allowed object is
@@ -167,7 +167,7 @@ public class PaymentByAgencyInformation {
     }
 
     /**
-     * »ñÈ¡dbtrÊôĞÔµÄÖµ¡£
+     * è·å–dbtrå±æ€§çš„å€¼ã€‚
      * 
      * @return
      *     possible object is
@@ -179,7 +179,7 @@ public class PaymentByAgencyInformation {
     }
 
     /**
-     * ÉèÖÃdbtrÊôĞÔµÄÖµ¡£
+     * è®¾ç½®dbtrå±æ€§çš„å€¼ã€‚
      * 
      * @param value
      *     allowed object is
@@ -191,7 +191,7 @@ public class PaymentByAgencyInformation {
     }
 
     /**
-     * »ñÈ¡cdtrÊôĞÔµÄÖµ¡£
+     * è·å–cdtrå±æ€§çš„å€¼ã€‚
      * 
      * @return
      *     possible object is
@@ -203,7 +203,7 @@ public class PaymentByAgencyInformation {
     }
 
     /**
-     * ÉèÖÃcdtrÊôĞÔµÄÖµ¡£
+     * è®¾ç½®cdtrå±æ€§çš„å€¼ã€‚
      * 
      * @param value
      *     allowed object is
@@ -215,7 +215,7 @@ public class PaymentByAgencyInformation {
     }
 
     /**
-     * »ñÈ¡pmtItmCdÊôĞÔµÄÖµ¡£
+     * è·å–pmtItmCdå±æ€§çš„å€¼ã€‚
      * 
      * @return
      *     possible object is
@@ -227,7 +227,7 @@ public class PaymentByAgencyInformation {
     }
 
     /**
-     * ÉèÖÃpmtItmCdÊôĞÔµÄÖµ¡£
+     * è®¾ç½®pmtItmCdå±æ€§çš„å€¼ã€‚
      * 
      * @param value
      *     allowed object is
@@ -239,7 +239,7 @@ public class PaymentByAgencyInformation {
     }
 
     /**
-     * »ñÈ¡chanlIdÊôĞÔµÄÖµ¡£
+     * è·å–chanlIdå±æ€§çš„å€¼ã€‚
      * 
      * @return
      *     possible object is
@@ -251,7 +251,7 @@ public class PaymentByAgencyInformation {
     }
 
     /**
-     * ÉèÖÃchanlIdÊôĞÔµÄÖµ¡£
+     * è®¾ç½®chanlIdå±æ€§çš„å€¼ã€‚
      * 
      * @param value
      *     allowed object is
@@ -263,7 +263,7 @@ public class PaymentByAgencyInformation {
     }
 
     /**
-     * »ñÈ¡rmkÊôĞÔµÄÖµ¡£
+     * è·å–rmkå±æ€§çš„å€¼ã€‚
      * 
      * @return
      *     possible object is
@@ -275,7 +275,7 @@ public class PaymentByAgencyInformation {
     }
 
     /**
-     * ÉèÖÃrmkÊôĞÔµÄÖµ¡£
+     * è®¾ç½®rmkå±æ€§çš„å€¼ã€‚
      * 
      * @param value
      *     allowed object is
@@ -287,7 +287,7 @@ public class PaymentByAgencyInformation {
     }
 
     /**
-     * »ñÈ¡altDbtrFlgÊôĞÔµÄÖµ¡£
+     * è·å–altDbtrFlgå±æ€§çš„å€¼ã€‚
      * 
      * @return
      *     possible object is
@@ -299,7 +299,7 @@ public class PaymentByAgencyInformation {
     }
 
     /**
-     * ÉèÖÃaltDbtrFlgÊôĞÔµÄÖµ¡£
+     * è®¾ç½®altDbtrFlgå±æ€§çš„å€¼ã€‚
      * 
      * @param value
      *     allowed object is
@@ -311,7 +311,7 @@ public class PaymentByAgencyInformation {
     }
 
     /**
-     * »ñÈ¡altDbtrNmÊôĞÔµÄÖµ¡£
+     * è·å–altDbtrNmå±æ€§çš„å€¼ã€‚
      * 
      * @return
      *     possible object is
@@ -323,7 +323,7 @@ public class PaymentByAgencyInformation {
     }
 
     /**
-     * ÉèÖÃaltDbtrNmÊôĞÔµÄÖµ¡£
+     * è®¾ç½®altDbtrNmå±æ€§çš„å€¼ã€‚
      * 
      * @param value
      *     allowed object is
@@ -335,7 +335,7 @@ public class PaymentByAgencyInformation {
     }
 
     /**
-     * »ñÈ¡proCdÊôĞÔµÄÖµ¡£
+     * è·å–proCdå±æ€§çš„å€¼ã€‚
      * 
      * @return
      *     possible object is
@@ -347,7 +347,7 @@ public class PaymentByAgencyInformation {
     }
 
     /**
-     * ÉèÖÃproCdÊôĞÔµÄÖµ¡£
+     * è®¾ç½®proCdå±æ€§çš„å€¼ã€‚
      * 
      * @param value
      *     allowed object is
@@ -359,7 +359,7 @@ public class PaymentByAgencyInformation {
     }
 
     /**
-     * »ñÈ¡txFlgÊôĞÔµÄÖµ¡£
+     * è·å–txFlgå±æ€§çš„å€¼ã€‚
      * 
      * @return
      *     possible object is
@@ -371,7 +371,7 @@ public class PaymentByAgencyInformation {
     }
 
     /**
-     * ÉèÖÃtxFlgÊôĞÔµÄÖµ¡£
+     * è®¾ç½®txFlgå±æ€§çš„å€¼ã€‚
      * 
      * @param value
      *     allowed object is
@@ -383,7 +383,7 @@ public class PaymentByAgencyInformation {
     }
 
     /**
-     * »ñÈ¡addtlLenÊôĞÔµÄÖµ¡£
+     * è·å–addtlLenå±æ€§çš„å€¼ã€‚
      * 
      * @return
      *     possible object is
@@ -395,7 +395,7 @@ public class PaymentByAgencyInformation {
     }
 
     /**
-     * ÉèÖÃaddtlLenÊôĞÔµÄÖµ¡£
+     * è®¾ç½®addtlLenå±æ€§çš„å€¼ã€‚
      * 
      * @param value
      *     allowed object is
@@ -407,7 +407,7 @@ public class PaymentByAgencyInformation {
     }
 
     /**
-     * »ñÈ¡addtlInfÊôĞÔµÄÖµ¡£
+     * è·å–addtlInfå±æ€§çš„å€¼ã€‚
      * 
      * @return
      *     possible object is
@@ -419,7 +419,7 @@ public class PaymentByAgencyInformation {
     }
 
     /**
-     * ÉèÖÃaddtlInfÊôĞÔµÄÖµ¡£
+     * è®¾ç½®addtlInfå±æ€§çš„å€¼ã€‚
      * 
      * @param value
      *     allowed object is

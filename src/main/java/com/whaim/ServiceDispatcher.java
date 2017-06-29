@@ -3,6 +3,7 @@ package com.whaim;
 import org.springframework.stereotype.Component;
 import service.Service_szfs301002;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -16,14 +17,16 @@ public class ServiceDispatcher implements IDispatcher {
     private Map<String,IService> serviceMap;
 
     public void registerService(IService service){
-        serviceMap.put(service.getMessageTye(),service);
+        String code=service.getMessageTye();
+
+        serviceMap.put(code,service);
     }
 
 
     //get message type and  subtype from message header
     private String getMsgType(byte[] msg){
         byte[] msgType=new byte[7]; // e.g. 301.001
-        System.arraycopy(msg,94,msgType,0,7);
+        System.arraycopy(msg,93,msgType,0,7);
 
         return new String(msgType);
     }
@@ -33,7 +36,7 @@ public class ServiceDispatcher implements IDispatcher {
 
         /*
         TODO: dispatch message
-        1. Get message type and subtype
+        1. parser message
         2. send byte message to the process service
         */
 
@@ -47,8 +50,9 @@ public class ServiceDispatcher implements IDispatcher {
 
     // constructor function by singleton pattern
     public ServiceDispatcher(){
-
+        serviceMap=new HashMap<String,IService>();
         //register service
-        registerService(new Service_szfs301002());
+        Service_szfs301002 szfs301002=new Service_szfs301002();
+        registerService(szfs301002);
     }
 }

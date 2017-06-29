@@ -15,11 +15,11 @@ import javax.annotation.Resource;
 @Component
 public class MessageQueueThread extends Thread {
 
-    @Resource(name = "mq")
+    @Autowired
     private MessageQueueManager mqm;
 
-    @Autowired
-    private ServiceDispatcher dispatcher;
+    //@Autowired
+    private ServiceDispatcher dispatcher=new ServiceDispatcher();
 
     private static Logger logger = LoggerFactory.getLogger(MessageQueueThread.class);
 

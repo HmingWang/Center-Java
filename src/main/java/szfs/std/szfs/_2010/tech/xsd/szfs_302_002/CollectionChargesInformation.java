@@ -1,8 +1,8 @@
 //
-// ´ËÎÄ¼şÊÇÓÉ JavaTM Architecture for XML Binding (JAXB) ÒıÓÃÊµÏÖ v2.2.8-b130911.1802 Éú³ÉµÄ
-// Çë·ÃÎÊ <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
-// ÔÚÖØĞÂ±àÒëÔ´Ä£Ê½Ê±, ¶Ô´ËÎÄ¼şµÄËùÓĞĞŞ¸Ä¶¼½«¶ªÊ§¡£
-// Éú³ÉÊ±¼ä: 2017.06.27 Ê±¼ä 03:52:26 PM CST 
+// æ­¤æ–‡ä»¶æ˜¯ç”± JavaTM Architecture for XML Binding (JAXB) å¼•ç”¨å®ç° v2.2.8-b130911.1802 ç”Ÿæˆçš„
+// è¯·è®¿é—® <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
+// åœ¨é‡æ–°ç¼–è¯‘æºæ¨¡å¼æ—¶, å¯¹æ­¤æ–‡ä»¶çš„æ‰€æœ‰ä¿®æ”¹éƒ½å°†ä¸¢å¤±ã€‚
+// ç”Ÿæˆæ—¶é—´: 2017.06.29 æ—¶é—´ 11:06:28 PM CST 
 //
 
 
@@ -15,9 +15,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>CollectionChargesInformation complex typeµÄ Java Àà¡£
+ * <p>CollectionChargesInformation complex typeçš„ Java ç±»ã€‚
  * 
- * <p>ÒÔÏÂÄ£Ê½Æ¬¶ÎÖ¸¶¨°üº¬ÔÚ´ËÀàÖĞµÄÔ¤ÆÚÄÚÈİ¡£
+ * <p>ä»¥ä¸‹æ¨¡å¼ç‰‡æ®µæŒ‡å®šåŒ…å«åœ¨æ­¤ç±»ä¸­çš„é¢„æœŸå†…å®¹ã€‚
  * 
  * <pre>
  * &lt;complexType name="CollectionChargesInformation">
@@ -91,7 +91,7 @@ public class CollectionChargesInformation {
     protected AdditionalInformation1 addtlInf;
 
     /**
-     * »ñÈ¡corprtnIdÊôĞÔµÄÖµ¡£
+     * è·å–corprtnIdå±æ€§çš„å€¼ã€‚
      * 
      * @return
      *     possible object is
@@ -103,7 +103,7 @@ public class CollectionChargesInformation {
     }
 
     /**
-     * ÉèÖÃcorprtnIdÊôĞÔµÄÖµ¡£
+     * è®¾ç½®corprtnIdå±æ€§çš„å€¼ã€‚
      * 
      * @param value
      *     allowed object is
@@ -115,7 +115,7 @@ public class CollectionChargesInformation {
     }
 
     /**
-     * »ñÈ¡dbtrIdÊôĞÔµÄÖµ¡£
+     * è·å–dbtrIdå±æ€§çš„å€¼ã€‚
      * 
      * @return
      *     possible object is
@@ -127,7 +127,7 @@ public class CollectionChargesInformation {
     }
 
     /**
-     * ÉèÖÃdbtrIdÊôĞÔµÄÖµ¡£
+     * è®¾ç½®dbtrIdå±æ€§çš„å€¼ã€‚
      * 
      * @param value
      *     allowed object is
@@ -139,7 +139,7 @@ public class CollectionChargesInformation {
     }
 
     /**
-     * »ñÈ¡cdtrIdÊôĞÔµÄÖµ¡£
+     * è·å–cdtrIdå±æ€§çš„å€¼ã€‚
      * 
      * @return
      *     possible object is
@@ -151,7 +151,7 @@ public class CollectionChargesInformation {
     }
 
     /**
-     * ÉèÖÃcdtrIdÊôĞÔµÄÖµ¡£
+     * è®¾ç½®cdtrIdå±æ€§çš„å€¼ã€‚
      * 
      * @param value
      *     allowed object is
@@ -163,7 +163,7 @@ public class CollectionChargesInformation {
     }
 
     /**
-     * »ñÈ¡dbtrÊôĞÔµÄÖµ¡£
+     * è·å–dbtrå±æ€§çš„å€¼ã€‚
      * 
      * @return
      *     possible object is
@@ -175,7 +175,7 @@ public class CollectionChargesInformation {
     }
 
     /**
-     * ÉèÖÃdbtrÊôĞÔµÄÖµ¡£
+     * è®¾ç½®dbtrå±æ€§çš„å€¼ã€‚
      * 
      * @param value
      *     allowed object is
@@ -187,7 +187,7 @@ public class CollectionChargesInformation {
     }
 
     /**
-     * »ñÈ¡cdtrÊôĞÔµÄÖµ¡£
+     * è·å–cdtrå±æ€§çš„å€¼ã€‚
      * 
      * @return
      *     possible object is
@@ -199,7 +199,7 @@ public class CollectionChargesInformation {
     }
 
     /**
-     * ÉèÖÃcdtrÊôĞÔµÄÖµ¡£
+     * è®¾ç½®cdtrå±æ€§çš„å€¼ã€‚
      * 
      * @param value
      *     allowed object is
@@ -211,7 +211,7 @@ public class CollectionChargesInformation {
     }
 
     /**
-     * »ñÈ¡pmtItmCdÊôĞÔµÄÖµ¡£
+     * è·å–pmtItmCdå±æ€§çš„å€¼ã€‚
      * 
      * @return
      *     possible object is
@@ -223,7 +223,7 @@ public class CollectionChargesInformation {
     }
 
     /**
-     * ÉèÖÃpmtItmCdÊôĞÔµÄÖµ¡£
+     * è®¾ç½®pmtItmCdå±æ€§çš„å€¼ã€‚
      * 
      * @param value
      *     allowed object is
@@ -235,7 +235,7 @@ public class CollectionChargesInformation {
     }
 
     /**
-     * »ñÈ¡chanlIdÊôĞÔµÄÖµ¡£
+     * è·å–chanlIdå±æ€§çš„å€¼ã€‚
      * 
      * @return
      *     possible object is
@@ -247,7 +247,7 @@ public class CollectionChargesInformation {
     }
 
     /**
-     * ÉèÖÃchanlIdÊôĞÔµÄÖµ¡£
+     * è®¾ç½®chanlIdå±æ€§çš„å€¼ã€‚
      * 
      * @param value
      *     allowed object is
@@ -259,7 +259,7 @@ public class CollectionChargesInformation {
     }
 
     /**
-     * »ñÈ¡rmkÊôĞÔµÄÖµ¡£
+     * è·å–rmkå±æ€§çš„å€¼ã€‚
      * 
      * @return
      *     possible object is
@@ -271,7 +271,7 @@ public class CollectionChargesInformation {
     }
 
     /**
-     * ÉèÖÃrmkÊôĞÔµÄÖµ¡£
+     * è®¾ç½®rmkå±æ€§çš„å€¼ã€‚
      * 
      * @param value
      *     allowed object is
@@ -283,7 +283,7 @@ public class CollectionChargesInformation {
     }
 
     /**
-     * »ñÈ¡altCdtrFlgÊôĞÔµÄÖµ¡£
+     * è·å–altCdtrFlgå±æ€§çš„å€¼ã€‚
      * 
      * @return
      *     possible object is
@@ -295,7 +295,7 @@ public class CollectionChargesInformation {
     }
 
     /**
-     * ÉèÖÃaltCdtrFlgÊôĞÔµÄÖµ¡£
+     * è®¾ç½®altCdtrFlgå±æ€§çš„å€¼ã€‚
      * 
      * @param value
      *     allowed object is
@@ -307,7 +307,7 @@ public class CollectionChargesInformation {
     }
 
     /**
-     * »ñÈ¡altCdtrNmÊôĞÔµÄÖµ¡£
+     * è·å–altCdtrNmå±æ€§çš„å€¼ã€‚
      * 
      * @return
      *     possible object is
@@ -319,7 +319,7 @@ public class CollectionChargesInformation {
     }
 
     /**
-     * ÉèÖÃaltCdtrNmÊôĞÔµÄÖµ¡£
+     * è®¾ç½®altCdtrNmå±æ€§çš„å€¼ã€‚
      * 
      * @param value
      *     allowed object is
@@ -331,7 +331,7 @@ public class CollectionChargesInformation {
     }
 
     /**
-     * »ñÈ¡proCdÊôĞÔµÄÖµ¡£
+     * è·å–proCdå±æ€§çš„å€¼ã€‚
      * 
      * @return
      *     possible object is
@@ -343,7 +343,7 @@ public class CollectionChargesInformation {
     }
 
     /**
-     * ÉèÖÃproCdÊôĞÔµÄÖµ¡£
+     * è®¾ç½®proCdå±æ€§çš„å€¼ã€‚
      * 
      * @param value
      *     allowed object is
@@ -355,7 +355,7 @@ public class CollectionChargesInformation {
     }
 
     /**
-     * »ñÈ¡addtlLenÊôĞÔµÄÖµ¡£
+     * è·å–addtlLenå±æ€§çš„å€¼ã€‚
      * 
      * @return
      *     possible object is
@@ -367,7 +367,7 @@ public class CollectionChargesInformation {
     }
 
     /**
-     * ÉèÖÃaddtlLenÊôĞÔµÄÖµ¡£
+     * è®¾ç½®addtlLenå±æ€§çš„å€¼ã€‚
      * 
      * @param value
      *     allowed object is
@@ -379,7 +379,7 @@ public class CollectionChargesInformation {
     }
 
     /**
-     * »ñÈ¡addtlInfÊôĞÔµÄÖµ¡£
+     * è·å–addtlInfå±æ€§çš„å€¼ã€‚
      * 
      * @return
      *     possible object is
@@ -391,7 +391,7 @@ public class CollectionChargesInformation {
     }
 
     /**
-     * ÉèÖÃaddtlInfÊôĞÔµÄÖµ¡£
+     * è®¾ç½®addtlInfå±æ€§çš„å€¼ã€‚
      * 
      * @param value
      *     allowed object is

@@ -92,11 +92,12 @@ public class MessageQueueManager {
     private MessageProducer producer = null;
     private MessageConsumer consumer = null;
     private MessageConsumer consumer_asyn = null;
+    private IDispatcher dispatcher=null;
 
     // logger
     private static Logger logger = LoggerFactory.getLogger(MessageQueueManager.class);;
 
-    void init(IDispatcher dispatcher) {
+    void init(IDispatcher dsp) {
 
         try {
             // Create a connection factory objects
@@ -122,10 +123,11 @@ public class MessageQueueManager {
             consumer_asyn.setMessageListener(new MessageListener() {
                 @Override
                 public void onMessage(Message message) {
-                    recvMessageAsynHandler(message,dispatcher);
+                    recvMessageAsynHandler(message);
                 }
             });
 
+            dispatcher=dsp;
             isInit=true;
 
             logger.info("MessageQueueManager init...");
@@ -151,7 +153,7 @@ public class MessageQueueManager {
 
     }
 
-    private void recvMessageAsynHandler(Message message,IDispatcher dispatcher) {
+    private void recvMessageAsynHandler(Message message) {
 
         try {
             if (message instanceof BytesMessage) {
@@ -160,7 +162,7 @@ public class MessageQueueManager {
                 byte[] bytes = new byte[(int) bytesMessage.getBodyLength()];
                 bytesMessage.readBytes(bytes);
 
-                logger.info("BytesMessage:" );
+                logger.info("received message================" );
                 //Interface IMessageProcessor method
                 if(!dispatcher.dispatch(bytes)){
                     logger.error("user class method implement interface dispatch message failed.");

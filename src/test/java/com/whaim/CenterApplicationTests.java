@@ -10,6 +10,11 @@ import javax.jms.BytesMessage;
 import javax.jms.JMSException;
 import javax.jms.TextMessage;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+
 import static java.lang.Thread.sleep;
 
 
@@ -23,13 +28,19 @@ public class CenterApplicationTests {
     @Autowired
     private ServiceDispatcher mp;
 
-	@Test
-	public void testMain() {
-	        //CenterApplication.main(null);
-        String test="abcdefghijklmnopqrstuvwxyz";
-        String b=test.substring(1,5);
+    private byte[] msgs;
 
-        System.out.println(b);
+	@Test
+	public void testMain() throws Exception {
+
+        File f=new File("E:\\git\\Center\\src\\main\\resources\\xml\\301.xml");
+        FileInputStream fs=new FileInputStream(f);
+        msgs=new byte[(int) f.length()];
+
+        fs.read(msgs);
+
+        testSendMessage();
+
 	}
 
 	@Test
@@ -61,7 +72,7 @@ public class CenterApplicationTests {
         try{
             BytesMessage msg=qmgr.getSession().createBytesMessage();
 
-            msg.writeBytes(new String("test message").getBytes());
+            msg.writeBytes(msgs);
             qmgr.sendMessage(msg);
             System.out.println(">>>>>>>>>>>>>>>>>send<<<<<<<<<<<<<<<");
         }catch(JMSException e){
