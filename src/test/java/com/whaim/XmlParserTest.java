@@ -2,16 +2,12 @@ package com.whaim;
 
 import org.junit.Test;
 
-import java.io.File;
 import java.io.FileReader;
-import java.lang.reflect.ParameterizedType;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by whaim on 2017/6/28.
  */
-public class XMLParserTest {
+public class XmlParserTest {
 
 
     private class T<Integer>
@@ -36,7 +32,7 @@ public class XMLParserTest {
 
 
 
-        XMLParser parser=  new XMLParser();
+        XmlParser parser=  new XmlParser();
 
         FileReader fr= new FileReader("Z:\\git\\Center-Java\\src\\main\\resources\\xml\\sample.xml");
         char[] buffer=new char[2048];

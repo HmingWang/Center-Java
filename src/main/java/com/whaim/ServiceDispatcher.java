@@ -2,19 +2,8 @@ package com.whaim;
 
 import org.springframework.stereotype.Component;
 import service.Service_szfs301002;
-import szfs.std.szfs._2010.tech.xsd.szfs_301_002.Document;
 
-import javax.xml.XMLConstants;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBElement;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
-import javax.xml.stream.XMLStreamReader;
-import javax.xml.validation.SchemaFactory;
-import java.io.*;
 import java.util.Map;
-
-import static com.sun.jmx.mbeanserver.Util.cast;
 
 /**
  * Created by whaim on 2017/6/27.
@@ -22,11 +11,7 @@ import static com.sun.jmx.mbeanserver.Util.cast;
  */
 
 @Component
-public class ServiceDispatcherImpl implements IServiceDispatcher{
-
-    private String header;
-    private String xmlbody;
-    private String detaillist;
+public class ServiceDispatcher implements IDispatcher {
 
     private Map<String,IService> serviceMap;
 
@@ -61,7 +46,7 @@ public class ServiceDispatcherImpl implements IServiceDispatcher{
     }
 
     // constructor function by singleton pattern
-    public ServiceDispatcherImpl(){
+    public ServiceDispatcher(){
 
         //register service
         registerService(new Service_szfs301002());

@@ -5,6 +5,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
+
 
 /**
  * Created by whaim on 2017/6/26.
@@ -13,11 +15,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class MessageQueueThread extends Thread {
 
-    @Autowired
+    @Resource(name = "mq")
     private MessageQueueManager mqm;
 
     @Autowired
-    private ServiceDispatcherImpl dispatcher;
+    private ServiceDispatcher dispatcher;
 
     private static Logger logger = LoggerFactory.getLogger(MessageQueueThread.class);
 

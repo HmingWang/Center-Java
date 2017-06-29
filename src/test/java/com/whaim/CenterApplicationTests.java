@@ -21,7 +21,7 @@ public class CenterApplicationTests {
     private MessageQueueManager qmgr;
 
     @Autowired
-    private ServiceDispatcherImpl mp;
+    private ServiceDispatcher mp;
 
 	@Test
 	public void testMain() {

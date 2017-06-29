@@ -3,14 +3,12 @@ package com.whaim;
 
 import com.ibm.mq.jms.JMSC;
 import com.ibm.mq.jms.MQConnectionFactory;
-import org.aspectj.bridge.IMessageHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 import javax.jms.*;
-import java.io.UnsupportedEncodingException;
 
 
 /**
@@ -98,7 +96,7 @@ public class MessageQueueManager {
     // logger
     private static Logger logger = LoggerFactory.getLogger(MessageQueueManager.class);;
 
-    void init(IServiceDispatcher dispatcher) {
+    void init(IDispatcher dispatcher) {
 
         try {
             // Create a connection factory objects
@@ -153,7 +151,7 @@ public class MessageQueueManager {
 
     }
 
-    private void recvMessageAsynHandler(Message message,IServiceDispatcher dispatcher) {
+    private void recvMessageAsynHandler(Message message,IDispatcher dispatcher) {
 
         try {
             if (message instanceof BytesMessage) {
