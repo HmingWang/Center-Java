@@ -77,9 +77,7 @@ public class DataParser<Document>{
             u.setSchema(SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI).newSchema(new File(getSchemaPath())));
             doc= (Document) JAXBIntrospector.getValue(u.unmarshal(new StringReader(xmlBody)));
 
-        } catch (JAXBException e) {
-            e.printStackTrace();
-        } catch (SAXException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

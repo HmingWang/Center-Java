@@ -1,9 +1,12 @@
 package com.whaim.datagram;
 
+import org.springframework.stereotype.Component;
+
 /**
  * Created by whaim on 2017/6/29.
  *
  */
+
 
 public class Datagram<XMLDocument> {
     public DataHeader getHeader() {

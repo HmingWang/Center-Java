@@ -1,19 +1,13 @@
 package com.whaim.mq;
 
-import com.whaim.datagram.DataParser;
-import com.whaim.datagram.Datagram;
-import com.whaim.mq.IDispatcher;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Component;
 import com.whaim.service.IService;
 import com.whaim.service.Service_szfs301002;
-import szfs.std.szfs._2010.tech.xsd.szfs_302_002.Document;
-import xml.Szfs302001;
-
-import javax.xml.crypto.Data;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,20 +20,6 @@ import java.util.Map;
 public class ServiceDispatcher implements IDispatcher {
 
     private static Logger logger= LoggerFactory.getLogger( ServiceDispatcher.class );
-
-    @Autowired
-    public void setSzfs301002(Service_szfs301002 szfs301002) {
-        this.szfs301002 = szfs301002;
-    }
-
-    @Autowired
-    public void setServiceMap(Map<String, IService> serviceMap) {
-        this.serviceMap = serviceMap;
-    }
-
-
-    private Service_szfs301002 szfs301002;
-
 
     private Map<String,IService> serviceMap;
 
@@ -85,11 +65,12 @@ public class ServiceDispatcher implements IDispatcher {
     // constructor function by singleton pattern
     public ServiceDispatcher(){
 
+        ApplicationContext  ac= new AnnotationConfigApplicationContext( "com.whaim" );
+
         serviceMap=new HashMap<>();
 
         //register service
-
-        registerService(szfs301002);
+        registerService(ac.getBean( Service_szfs301002.class ));
 
 
 

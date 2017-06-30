@@ -1,5 +1,6 @@
 package com.whaim;
 
+import com.whaim.datagram.DataParser;
 import com.whaim.mq.MessageQueueManager;
 import com.whaim.mq.ServiceDispatcher;
 import org.junit.Test;
@@ -7,6 +8,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import szfs.std.szfs._2010.tech.xsd.szfs_301_002.Document;
 
 import javax.jms.BytesMessage;
 import javax.jms.JMSException;
@@ -28,6 +30,9 @@ public class CenterApplicationTests {
     @Autowired
     private ServiceDispatcher mp;
 
+    @Autowired
+    private DataParser<Document> dp;
+
     private byte[] msgs;
 
 	@Test
@@ -41,6 +46,13 @@ public class CenterApplicationTests {
 
         testSendMessage();
 
+        System.out.println(dp.toString());
+
+        try {
+            sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 	}
 
 	@Test
@@ -79,11 +91,7 @@ public class CenterApplicationTests {
             e.printStackTrace();
         }
 
-        try {
-            sleep(10000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
     }
 
     @Test
