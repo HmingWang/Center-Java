@@ -56,7 +56,7 @@ public class CenterApplicationTests {
 	}
 
 	@Test
-	public void testMQMgr(){
+	public void testMQMgr() throws JMSException {
 		qmgr.init(mp);
 		int count=10;
 		while(count-->0){
@@ -65,7 +65,7 @@ public class CenterApplicationTests {
 	}
 
 	@Test
-    public void testRecvMessage(){
+    public void testRecvMessage() throws JMSException {
 	    qmgr.init(mp);
         String msg= null;
         try {
@@ -77,7 +77,7 @@ public class CenterApplicationTests {
     }
 
     @Test
-    public void testSendMessage(){
+    public void testSendMessage() throws JMSException {
         qmgr.init(mp);
         qmgr.start();
 
@@ -95,7 +95,7 @@ public class CenterApplicationTests {
     }
 
     @Test
-    public void testMQMStart(){
+    public void testMQMStart() throws JMSException {
         qmgr.init(mp);
         qmgr.start();
     }

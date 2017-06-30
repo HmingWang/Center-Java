@@ -74,6 +74,8 @@ public class DataParser<Document>{
         signatureField= message.substring(message.indexOf(signatureBlock), message.indexOf(xmlBlock));
         xmlField = message.substring(message.indexOf(xmlBlock));
 
+        //signature string in hex
+        signatureString=signatureField.substring(signatureField.indexOf(signatureBlock)+3,signatureField.indexOf('}')).trim();
 
         //TODO: additional field
     }
