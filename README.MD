@@ -2,9 +2,10 @@
 ## 功能点列表
 
 * [x] Jms 整合ibm mq队列读取和发送 
-* Xml报文解析和组装并schema校验
-* md5&rsa实现报文加核签
-* mybatis数据库持久化
+* [x] 报文解析并schema校验
+* [] 报文组装
+* [] md5&rsa实现报文加核签
+* [] mybatis数据库持久化
 
 ## 提供API
 * mq操作

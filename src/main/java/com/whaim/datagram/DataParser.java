@@ -15,8 +15,6 @@ import javax.xml.validation.SchemaFactory;
 import java.io.File;
 import java.io.StringReader;
 import java.io.UnsupportedEncodingException;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
 
 /**
  * Created by whaim on 2017/6/28.
@@ -48,10 +46,11 @@ public class DataParser<Document>{
     private Class<?> clazz;
 
     //middle component
-    private String messageString;
-    private String headerString;
-    private String xmlString;
-    private String additionString;
+    private String message;
+    private String headerField;
+    private String xmlField;
+    private String additionField;
+    private String signatureField;
     private String signatureString;
 
     //entry point
@@ -70,10 +69,12 @@ public class DataParser<Document>{
     }
 
     private void splitMessage() throws UnsupportedEncodingException {
-        messageString=new String(rawData,charsetName);
-        headerString=messageString.substring(messageString.indexOf(headerBlock),messageString.indexOf(signatureBlock));
-        signatureString=messageString.substring(messageString.indexOf(signatureBlock),messageString.indexOf(xmlBlock));
-        xmlString=messageString.substring(messageString.indexOf(xmlBlock));
+        message =new String(rawData,charsetName);
+        headerField = message.substring(message.indexOf(headerBlock), message.indexOf(signatureBlock));
+        signatureField= message.substring(message.indexOf(signatureBlock), message.indexOf(xmlBlock));
+        xmlField = message.substring(message.indexOf(xmlBlock));
+
+
         //TODO: additional field
     }
 
@@ -87,7 +88,7 @@ public class DataParser<Document>{
         JAXBContext jc = JAXBContext.newInstance(clazz.getPackage().getName());
         Unmarshaller u = jc.createUnmarshaller();
         u.setSchema(SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI).newSchema(new File(getSchemaPath())));
-        Document doc= (Document) JAXBIntrospector.getValue(u.unmarshal(new StringReader(xmlString)));
+        Document doc= (Document) JAXBIntrospector.getValue(u.unmarshal(new StringReader(xmlField)));
 
         return doc;
     }
