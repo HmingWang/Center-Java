@@ -14,6 +14,7 @@ import javax.xml.validation.SchemaFactory;
 
 import java.io.File;
 import java.io.StringReader;
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
@@ -24,69 +25,83 @@ import java.lang.reflect.Type;
 @Component
 public class DataParser<Document>{
 
-    private static final int headerlen=162;
-
-    private Document doc;
-    private byte[] rawData;
-    private Class<?> clazz;
-
-    public void setSchemaRootPath(String schemaRootPath) {
-        this.schemaRootPath = schemaRootPath;
-    }
-
-    public void setSchemaPrefix(String schemaPrefix) {
-        this.schemaPrefix = schemaPrefix;
-    }
-
-    public void setSchemaPostfix(String schemaPostfix) {
-        this.schemaPostfix = schemaPostfix;
-    }
-
     @Value("${datagram.schema.root}")
     private String schemaRootPath;
     @Value("${datagram.schema.prefix}")
     private String schemaPrefix;
     @Value("${datagram.schema.postfix}")
     private String schemaPostfix;
+    @Value("${datagram.charset}")
+    private String charsetName;
+    @Value("${datagram.block.header}")
+    private String headerBlock;
+    @Value("${datagram.block.signature}")
+    private String signatureBlock;
+    @Value("${datagram.block.xml}")
+    private String xmlBlock;
+
+    @Autowired //default autowired all member is null
+    private Datagram<Document> datagram;
+
+    //entry point parameters
+    private byte[] rawData;
+    private Class<?> clazz;
+
+    //middle component
+    private String messageString;
+    private String headerString;
+    private String xmlString;
+    private String additionString;
+    private String signatureString;
 
     //entry point
-    public Datagram<Document> parser(byte[] msg,Class<?> valueType){
+    public Datagram<Document> parser(byte[] msg,Class<?> valueType) throws UnsupportedEncodingException {
 
         rawData=msg;
         clazz=valueType;
 
+        splitMessage();
+
         Datagram dg=new Datagram();
-        dg.setHeader(getHeader(msg));
-        dg.setDocument(getDocument(msg));
+        dg.setHeader(getHeader());
+        dg.setDocument(getDocument());
 
         return dg;
     }
 
-    private DataHeader getHeader(byte[] msg){
+    private void splitMessage() throws UnsupportedEncodingException {
+        messageString=new String(rawData,charsetName);
+        headerString=messageString.substring(messageString.indexOf(headerBlock),messageString.indexOf(signatureBlock));
+        signatureString=messageString.substring(messageString.indexOf(signatureBlock),messageString.indexOf(xmlBlock));
+        xmlString=messageString.substring(messageString.indexOf(xmlBlock));
+    }
+
+    private DataHeader getHeader(){
         DataHeader header=new DataHeader();
         header.setMesgType("301.002");
         return header;
     }
-    private Object getDocument(byte[] msg){
-        String msgString=new String(msg);
-        String xmlBody=msgString.substring(msgString.indexOf("<?xml"));
+    private Object getDocument(){
 
         try {
+            //doc=clazz.newInstance();
             JAXBContext jc = JAXBContext.newInstance(clazz.getPackage().getName());
             Unmarshaller u = jc.createUnmarshaller();
             u.setSchema(SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI).newSchema(new File(getSchemaPath())));
-            doc= (Document) JAXBIntrospector.getValue(u.unmarshal(new StringReader(xmlBody)));
+            Document doc= (Document) JAXBIntrospector.getValue(u.unmarshal(new StringReader(xmlString)));
+
+            return doc;
 
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return doc;
+        return null;
     }
 
     //
     private String getSchemaPath(){
-        return schemaRootPath+schemaPrefix+getMessageType()+schemaPostfix;
+        return schemaRootPath+'\\'+schemaPrefix+getMessageType()+schemaPostfix;
     }
 
     private String getMessageType(){

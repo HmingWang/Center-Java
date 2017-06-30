@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
  *
  */
 
-
+@Component
 public class Datagram<XMLDocument> {
     public DataHeader getHeader() {
         return header;

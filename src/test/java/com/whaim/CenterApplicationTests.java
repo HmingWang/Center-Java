@@ -38,7 +38,7 @@ public class CenterApplicationTests {
 	@Test
 	public void testMain() throws Exception {
 
-        File f=new File("z:\\git\\Center-java\\src\\main\\resources\\xml\\301.xml");
+        File f=new File("e:\\git\\Center\\src\\main\\resources\\xml\\301.xml");
         FileInputStream fs=new FileInputStream(f);
         msgs=new byte[(int) f.length()];
 

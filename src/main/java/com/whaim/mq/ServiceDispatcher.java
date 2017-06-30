@@ -1,14 +1,18 @@
 package com.whaim.mq;
 
 
+import com.whaim.service.Service_szfs301002;
+import org.aspectj.lang.annotation.After;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 import com.whaim.service.IService;
-import com.whaim.service.Service_szfs301002;
+
+import javax.annotation.Resource;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -21,13 +25,8 @@ public class ServiceDispatcher implements IDispatcher {
 
     private static Logger logger= LoggerFactory.getLogger( ServiceDispatcher.class );
 
+    @Resource(name = "registerService")
     private Map<String,IService> serviceMap;
-
-    private void registerService(IService service){
-
-        String code=service.getMessageTye();
-        serviceMap.put(code,service);
-    }
 
 
     //get message type and  subtype from message header
@@ -62,17 +61,4 @@ public class ServiceDispatcher implements IDispatcher {
         return true;
     }
 
-    // constructor function by singleton pattern
-    public ServiceDispatcher(){
-
-        ApplicationContext  ac= new AnnotationConfigApplicationContext( "com.whaim" );
-
-        serviceMap=new HashMap<>();
-
-        //register service
-        registerService(ac.getBean( Service_szfs301002.class ));
-
-
-
-    }
 }
