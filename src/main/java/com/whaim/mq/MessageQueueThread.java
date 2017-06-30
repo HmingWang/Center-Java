@@ -1,6 +1,5 @@
 package com.whaim.mq;
 
-import com.whaim.ServiceDispatcher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +16,16 @@ public class MessageQueueThread extends Thread {
     @Autowired
     private MessageQueueManager mqm;
 
-    //@Autowired
-    private ServiceDispatcher dispatcher=new ServiceDispatcher();
+    @Autowired
+    private ServiceDispatcher dispatcher;
+
+    public void setMqm(MessageQueueManager mqm) {
+        this.mqm = mqm;
+    }
+
+    public void setDispatcher(ServiceDispatcher dispatcher) {
+        this.dispatcher = dispatcher;
+    }
 
     private static Logger logger = LoggerFactory.getLogger(MessageQueueThread.class);
 

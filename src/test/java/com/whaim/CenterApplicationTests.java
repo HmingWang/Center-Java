@@ -1,6 +1,7 @@
 package com.whaim;
 
 import com.whaim.mq.MessageQueueManager;
+import com.whaim.mq.ServiceDispatcher;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +33,7 @@ public class CenterApplicationTests {
 	@Test
 	public void testMain() throws Exception {
 
-        File f=new File("E:\\git\\Center\\src\\main\\resources\\xml\\301.xml");
+        File f=new File("z:\\git\\Center-java\\src\\main\\resources\\xml\\301.xml");
         FileInputStream fs=new FileInputStream(f);
         msgs=new byte[(int) f.length()];
 

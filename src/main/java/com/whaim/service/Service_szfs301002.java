@@ -2,17 +2,25 @@ package com.whaim.service;
 
 import com.whaim.datagram.DataParser;
 import com.whaim.datagram.Datagram;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import szfs.std.szfs._2010.tech.xsd.szfs_301_002.Document;
 
 /**
  * Created by whaim on 2017/6/28.
  */
+
+@Service
 public class Service_szfs301002 implements IService{
 
     //message type
     private static final String msgType="301.002";
     private Datagram<Document> doc=new Datagram<>();
-    private DataParser<Document> parser= new DataParser<>();
+
+    @Autowired
+    private DataParser<Document> parser=new DataParser<>();
 
     @Override
     public String getMessageTye() {
@@ -23,11 +31,10 @@ public class Service_szfs301002 implements IService{
     public void process(byte[] msg) {
 
 
-        parser.setNamespace(Document.class.getPackage().getName());
-        parser.setSchemaFilePath("E:\\Git\\center\\src\\main\\resources\\schema\\szfs.301.002.01.xsd");
-        doc=parser.parser(msg);
+        doc=parser.parser(msg,Document.class);
 
         System.out.println(doc.getDocument().getPmtByAgcy().getPmtByAgcyInf().getCdtr().getId());
         return;
     }
+
 }
