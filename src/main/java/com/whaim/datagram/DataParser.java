@@ -55,7 +55,7 @@ public class DataParser<Document>{
     private String signatureString;
 
     //entry point
-    public Datagram<Document> parser(byte[] msg,Class<?> valueType) throws UnsupportedEncodingException {
+    public Datagram<Document> parser(byte[] msg,Class<?> valueType) throws UnsupportedEncodingException, JAXBException, SAXException {
 
         rawData=msg;
         clazz=valueType;
@@ -74,6 +74,7 @@ public class DataParser<Document>{
         headerString=messageString.substring(messageString.indexOf(headerBlock),messageString.indexOf(signatureBlock));
         signatureString=messageString.substring(messageString.indexOf(signatureBlock),messageString.indexOf(xmlBlock));
         xmlString=messageString.substring(messageString.indexOf(xmlBlock));
+        //TODO: additional field
     }
 
     private DataHeader getHeader(){
@@ -81,22 +82,14 @@ public class DataParser<Document>{
         header.setMesgType("301.002");
         return header;
     }
-    private Object getDocument(){
+    private Object getDocument() throws JAXBException, SAXException {
 
-        try {
-            //doc=clazz.newInstance();
-            JAXBContext jc = JAXBContext.newInstance(clazz.getPackage().getName());
-            Unmarshaller u = jc.createUnmarshaller();
-            u.setSchema(SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI).newSchema(new File(getSchemaPath())));
-            Document doc= (Document) JAXBIntrospector.getValue(u.unmarshal(new StringReader(xmlString)));
+        JAXBContext jc = JAXBContext.newInstance(clazz.getPackage().getName());
+        Unmarshaller u = jc.createUnmarshaller();
+        u.setSchema(SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI).newSchema(new File(getSchemaPath())));
+        Document doc= (Document) JAXBIntrospector.getValue(u.unmarshal(new StringReader(xmlString)));
 
-            return doc;
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return null;
+        return doc;
     }
 
     //

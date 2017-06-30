@@ -4,8 +4,10 @@ import com.whaim.datagram.DataParser;
 import com.whaim.datagram.Datagram;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.xml.sax.SAXException;
 import szfs.std.szfs._2010.tech.xsd.szfs_301_002.Document;
 
+import javax.xml.bind.JAXBException;
 import java.io.UnsupportedEncodingException;
 
 /**
@@ -18,7 +20,7 @@ public class Service_szfs301002 implements IService{
     //message type
     private static final String msgType="301.002";
 
-    private Datagram<Document> message=new Datagram<>();
+    private Datagram<Document> message;
 
     @Autowired
     private DataParser<Document> parser=new DataParser<>();
@@ -33,7 +35,10 @@ public class Service_szfs301002 implements IService{
 
         try {
             message=parser.parser(msg,Document.class);
-        } catch (UnsupportedEncodingException e) {
+
+            //TODO:  business logic implement  (omitted)...
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

@@ -97,123 +97,100 @@ public class MessageQueueManager {
     // logger
     private static Logger logger = LoggerFactory.getLogger(MessageQueueManager.class);;
 
-    public void init(IDispatcher dsp) {
+    public void init(IDispatcher dsp) throws JMSException {
 
-        try {
-            // Create a connection factory objects
-            MQConnectionFactory factory = new MQConnectionFactory();
-            factory.setQueueManager(qmgr);
-            factory.setHostName(host);
-            factory.setPort(port);
-            //factory.setChannel(channel);
-            factory.setTransportType(JMSC.MQJMS_TP_CLIENT_MQ_TCPIP);
-            factory.setCCSID(ccsid);
 
-            // Create JMS objects
-            connection = factory.createConnection(username, password);
-            //connection = factory.createConnection();
-            session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-            session_asyn = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+        // Create a connection factory objects
+        MQConnectionFactory factory = new MQConnectionFactory();
+        factory.setQueueManager(qmgr);
+        factory.setHostName(host);
+        factory.setPort(port);
+        //factory.setChannel(channel);
+        factory.setTransportType(JMSC.MQJMS_TP_CLIENT_MQ_TCPIP);
+        factory.setCCSID(ccsid);
 
-            producer = session.createProducer(session.createQueue(sendq));
-            consumer = session.createConsumer(session.createQueue(recvq));
-            consumer_asyn = session_asyn.createConsumer(session_asyn.createQueue(recvq));
+        // Create JMS objects
+        connection = factory.createConnection(username, password);
+        //connection = factory.createConnection();
+        session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+        session_asyn = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 
-            // Set Listener
-            consumer_asyn.setMessageListener(new MessageListener() {
-                @Override
-                public void onMessage(Message message) {
+        producer = session.createProducer(session.createQueue(sendq));
+        consumer = session.createConsumer(session.createQueue(recvq));
+        consumer_asyn = session_asyn.createConsumer(session_asyn.createQueue(recvq));
+
+        // Set Listener
+        consumer_asyn.setMessageListener(new MessageListener() {
+            @Override
+            public void onMessage(Message message) {
+                try {
                     recvMessageAsynHandler(message);
+                } catch (JMSException e) {
+                    e.printStackTrace();
                 }
-            });
+            }
+        });
 
-            dispatcher=dsp;
-            isInit=true;
+        dispatcher=dsp;
+        isInit=true;
 
-            logger.info("MessageQueueManager init...");
-        } catch (JMSException e) {
-            e.printStackTrace();
-        }
+        logger.info("MessageQueueManager init...");
 
     }
 
     //Asyn Method Use
-    public void start(){
-        try {
-            if (!isInit) {
-                logger.error("MessageQueueManager NOT init");
-                throw new JMSException("MQ Manager NOT init");
+    public void start() throws JMSException {
+
+        if (!isInit) {
+            logger.error("MessageQueueManager NOT init");
+            throw new JMSException("MQ Manager NOT init");
+        }
+
+        connection.start();
+        logger.info("MessageQueueManager start...");
+
+
+    }
+
+    private void recvMessageAsynHandler(Message message) throws JMSException {
+
+        if (message instanceof BytesMessage) {
+            BytesMessage bytesMessage = (BytesMessage) message;
+
+            byte[] bytes = new byte[(int) bytesMessage.getBodyLength()];
+            bytesMessage.readBytes(bytes);
+
+            logger.info("received message================" );
+            //Interface IMessageProcessor method
+            if(!dispatcher.dispatch(bytes)){
+                logger.error("user class method implement interface dispatch message failed.");
             }
 
-            connection.start();
-            logger.info("MessageQueueManager start...");
-        } catch (JMSException e) {
-            e.printStackTrace();
+        } else {
+            logger.warn("received UNKNOWN type message ...");
+            logger.debug(message.toString());
         }
 
     }
 
-    private void recvMessageAsynHandler(Message message) {
-
-        try {
-            if (message instanceof BytesMessage) {
-                BytesMessage bytesMessage = (BytesMessage) message;
-
-                byte[] bytes = new byte[(int) bytesMessage.getBodyLength()];
-                bytesMessage.readBytes(bytes);
-
-                logger.info("received message================" );
-                //Interface IMessageProcessor method
-                if(!dispatcher.dispatch(bytes)){
-                    logger.error("user class method implement interface dispatch message failed.");
-                }
-
-            } else {
-                logger.warn("received UNKNOWN type message ...");
-                logger.debug(message.toString());
-            }
-
-        } catch (Throwable e) {
-            e.printStackTrace();
-//        } catch (UnsupportedEncodingException e) {
-//            e.printStackTrace();
-        }
+    public Message recvMessage() throws JMSException {
+        return consumer.receive();
     }
 
-    public Message recvMessage() {
-        try {
-            return consumer.receive();
-        } catch (JMSException e) {
-            e.printStackTrace();
-            return null;
-        }
+    public void sendMessage(Message message) throws JMSException {
+        producer.send(message);
     }
 
-    public void sendMessage(Message message) {
-        try {
-            producer.send(message);
-        } catch (JMSException e) {
-            e.printStackTrace();
-        }
+    public void sendMessage(String message) throws JMSException {
+        producer.send(session.createTextMessage(message));
     }
 
-    public void sendMessage(String message) {
-        try {
-            producer.send(session.createTextMessage(message));
-        } catch (JMSException e) {
-            e.printStackTrace();
-        }
-    }
+    private void dispose() throws JMSException {
+        if (producer != null) producer.close();
+        if (session != null) session.close();
+        if (session_asyn != null) session_asyn.close();
+        if (connection != null) connection.close();
 
-    private void dispose() {
-        try {
-            if (producer != null) producer.close();
-            if (session != null) session.close();
-            if (session_asyn != null) session_asyn.close();
-            if (connection != null) connection.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
 

@@ -5,6 +5,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.jms.JMSException;
+
 
 /**
  * Created by whaim on 2017/6/26.
@@ -35,8 +37,13 @@ public class MessageQueueThread extends Thread {
 
         logger.info(">>>>>message queue listener thread startup<<<<");
 
-        mqm.init(dispatcher);
-        mqm.start();
+        try {
+            mqm.init(dispatcher);
+            mqm.start();
+        } catch (JMSException e) {
+            e.printStackTrace();
+        }
+
 
     }
 }
